@@ -1,0 +1,18 @@
+.wrapper {
+  height: 40px;
+  margin: 0px 10px;
+  text-align: left;
+  padding-left: 25px;
+  line-height: 40px;
+  border-radius: 20px;
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+.active {
+  background-color: var(--color-active-sidebar);
+}
+.hover {
+  background-color: var(--default-color);
+}
