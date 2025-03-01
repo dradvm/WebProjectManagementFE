@@ -4,13 +4,24 @@ import Notification from "../Pages/Notification/notification";
 import Project from "../Pages/Project/project";
 import Form from "../Pages/Form/form";
 import DefaultLayout from "../Components/layouts/DefaultLayout";
+import ManageUsers from "../../src/Pages/Admin/ManageUsers";
+import AdminSettings from "../../src/Pages/Admin/AdminSettings";
+import AdminDashboard from "../../src/Pages/Admin/AdminDashboard";
+import AdminLayout from "../../src/Components/layouts/AdminLayout/AdminLayout"; // Import layout mới
 
 export const publicRoutes = [
-  { path: "/", component: Home, layout: DefaultLayout }, // Không có layout
+  { path: "/", component: Home, layout: DefaultLayout },
   { path: "/project", component: Project, layout: DefaultLayout },
   { path: "/notification", component: Notification, layout: DefaultLayout },
   { path: "/form", component: Form, layout: DefaultLayout },
   { path: "/trash", component: Trash, layout: DefaultLayout },
+];
+
+// Admin Routes (Thêm mới)
+export const adminRoutes = [
+  { path: "/dashboard", component: AdminDashboard, layout: AdminLayout },
+  { path: "/users", component: ManageUsers, layout: AdminLayout },
+  { path: "/settings", component: AdminSettings, layout: AdminLayout },
 ];
 
 export const sidebarItems = [
@@ -59,6 +70,34 @@ export const sidebarItems = [
     icon: "faTrash",
     path: "/trash",
     component: Trash,
+    layout: DefaultLayout,
+  },
+];
+
+// Bổ sung sidebar cho Admin
+export const adminSidebarItems = [
+  {
+    id: 0,
+    name: "Trang chủ Admin",
+    icon: "faGauge",
+    path: "/dashboard",
+    component: AdminDashboard,
+    layout: DefaultLayout,
+  },
+  {
+    id: 1,
+    name: "Quản lý người dùng",
+    icon: "faUsers",
+    path: "/users",
+    component: ManageUsers,
+    layout: DefaultLayout,
+  },
+  {
+    id: 2,
+    name: "Cài đặt",
+    icon: "faGears",
+    path: "/settings",
+    component: AdminSettings,
     layout: DefaultLayout,
   },
 ];
