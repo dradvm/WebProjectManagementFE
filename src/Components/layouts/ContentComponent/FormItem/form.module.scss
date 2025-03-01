@@ -1,0 +1,17 @@
+.wrapper {
+  width: var(--form-width);
+  height: var(--form-height);
+  background-color: var(--form-color);
+  padding: 5px;
+  border-bottom: 1px solid gray;
+  &:hover {
+    background-color: var(--form-color-hover);
+  }
+}
+
+.default-link {
+  color: black;
+  font-size: 16px;
+  font-weight: 500;
+  text-decoration: none;
+}

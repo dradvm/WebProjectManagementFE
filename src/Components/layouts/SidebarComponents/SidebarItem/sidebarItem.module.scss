@@ -10,9 +10,19 @@
   }
 }
 
+.sidebar-items-children {
+  padding-left: 10px;
+}
 .active {
   background-color: var(--color-active-sidebar);
 }
 .hover {
   background-color: var(--default-color);
+}
+
+.link-sidebar-items {
+  color: var(--sidebar-color);
+  font-size: 16px;
+  font-weight: 500;
+  text-decoration: none;
 }

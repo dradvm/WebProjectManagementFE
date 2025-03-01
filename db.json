@@ -1,0 +1,64 @@
+{
+  "items": [
+    {
+      "id": 1,
+      "name": "Google",
+      "url": "https://www.google.com",
+      "date": "2025-02-28"
+    },
+    {
+      "id": 2,
+      "name": "YouTube",
+      "url": "https://www.youtube.com",
+      "date": "2025-02-28"
+    },
+    {
+      "id": 3,
+      "name": "Facebook",
+      "url": "https://www.facebook.com",
+      "date": "2025-02-27"
+    },
+    {
+      "id": 4,
+      "name": "Twitter",
+      "url": "https://www.twitter.com",
+      "date": "2025-02-26"
+    },
+    {
+      "id": 5,
+      "name": "GitHub",
+      "url": "https://www.github.com",
+      "date": "2025-02-25"
+    },
+    {
+      "id": 6,
+      "name": "LinkedIn",
+      "url": "https://www.linkedin.com",
+      "date": "2025-02-24"
+    },
+    {
+      "id": 7,
+      "name": "Reddit",
+      "url": "https://www.reddit.com",
+      "date": "2025-02-23"
+    },
+    {
+      "id": 8,
+      "name": "Amazon",
+      "url": "https://www.amazon.com",
+      "date": "2025-02-22"
+    },
+    {
+      "id": 9,
+      "name": "Netflix",
+      "url": "https://www.netflix.com",
+      "date": "2025-02-21"
+    },
+    {
+      "id": 10,
+      "name": "Twitch",
+      "url": "https://www.twitch.tv",
+      "date": "2025-02-20"
+    }
+  ]
+}

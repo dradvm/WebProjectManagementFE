@@ -2,7 +2,7 @@ import classNames from "classnames/bind";
 import styles from "./defaultLayout.module.scss";
 import Header from "./../Header/header";
 import Sidebar from "../../layouts/SidebarComponents/Sidebar/sidebar";
-import Content from "./../Content/content";
+import Content from "../ContentComponent/Content/content";
 const cx = classNames.bind(styles);
 
 function DefaultLayout({ children }) {
@@ -11,7 +11,7 @@ function DefaultLayout({ children }) {
       <Header />
       <div className={cx("wrapper")}>
         <Sidebar />
-        <div>{children}</div>
+        <div style={{ flex: "1" }}>{children}</div>
       </div>
     </div>
   );
