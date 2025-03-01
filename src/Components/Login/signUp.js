@@ -19,7 +19,15 @@ const SignUp = () => {
   };
 
   return (
-    <div className={styles.loginContainer}>
+    <div
+      className={styles.loginContainer}
+      style={{
+        position: "absolute",
+        top: "50%",
+        left: "50%",
+        transform: "translate(-50%, -50%)",
+      }}
+    >
       <h2>Create Your Account</h2>
       <form onSubmit={handleSignUp}>
         <InputField
@@ -35,7 +43,6 @@ const SignUp = () => {
           onChange={(e) => setEmail(e.target.value)}
         />
         <InputField
-          
           type="date"
           placeholder="Ngày sinh"
           value={dob}
@@ -61,8 +68,7 @@ const SignUp = () => {
             Khác
           </label>
         </div>
-        
-        
+
         <InputField
           type="password"
           placeholder="Mật khẩu"
@@ -70,11 +76,14 @@ const SignUp = () => {
           onChange={(e) => setPassword(e.target.value)}
         />
         <div className={styles.ButtonContinue}>
-          <Button type="submit">Đăng ký</Button>
+          <Button type="submit" text="Đăng ký" width="300px" />
         </div>
       </form>
       <p>
-      Already have an account? <Link className={styles.linkStyle} to="/login">Login</Link>
+        Already have an account?{" "}
+        <Link className={styles.linkStyle} to="/login">
+          Login
+        </Link>
       </p>
     </div>
   );

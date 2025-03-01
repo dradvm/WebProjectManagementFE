@@ -6,8 +6,8 @@ import { createContext, useState } from "react";
 import { publicRoutes } from "./routes";
 import { Fragment } from "react";
 import DefaultLayout from "./Components/layouts/DefaultLayout";
-import Login from "./Pages/Login/login"; 
-import SignUp from "./Pages/Login/signUp";
+import Login from "./Components/Login/login";
+import SignUp from "./Components/Login/signUp";
 
 export const sidebarContext = createContext();
 const cx = classNames.bind(styles);
@@ -41,8 +41,6 @@ function App() {
           </Routes>
         </GlobalStyles>
       </sidebarContext.Provider>
-      <Login></Login>
-      <SignUp></SignUp>
     </BrowserRouter>
   );
 }
