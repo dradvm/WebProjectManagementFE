@@ -5,7 +5,7 @@ import InputField from "../layouts/LoginComponents/InputField";
 import Button from "../layouts/LoginComponents/Button";
 import { Link } from "react-router-dom";
 
-const Login = () => {
+const Login = ({ setIsAuthenticated }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
@@ -16,8 +16,9 @@ const Login = () => {
     if (email === "test@gmail.com" && password === "123456") {
       localStorage.setItem("token", "fake-jwt-token");
       setLoginMessage("Login successful! ");
+      setIsAuthenticated(true);
       setTimeout(() => {
-        navigate("/home");
+        navigate("/");
       }, 1500);
     } else {
       setLoginMessage("Invalid email or password. Please try again!");

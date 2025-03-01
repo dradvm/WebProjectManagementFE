@@ -8,6 +8,8 @@ import ManageUsers from "../../src/Pages/Admin/ManageUsers";
 import AdminSettings from "../../src/Pages/Admin/AdminSettings";
 import AdminDashboard from "../../src/Pages/Admin/AdminDashboard";
 import AdminLayout from "../../src/Components/layouts/AdminLayout/AdminLayout"; // Import layout mới
+import Login from "../Components/Login/login";
+import Signup from "../Components/Login/signUp";
 
 export const publicRoutes = [
   { path: "/", component: Home, layout: DefaultLayout },
@@ -15,6 +17,8 @@ export const publicRoutes = [
   { path: "/notification", component: Notification, layout: DefaultLayout },
   { path: "/form", component: Form, layout: DefaultLayout },
   { path: "/trash", component: Trash, layout: DefaultLayout },
+  { path: "/login", component: Login, layout: null }, // Không dùng layout
+  { path: "/signup", component: Signup, layout: null }, // Không dùng layout
 ];
 
 // Admin Routes (Thêm mới)
@@ -101,3 +105,5 @@ export const adminSidebarItems = [
     layout: DefaultLayout,
   },
 ];
+
+//Chuyen doi Login va SignUp
