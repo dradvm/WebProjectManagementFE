@@ -9,6 +9,7 @@ import DefaultLayout from "./Components/layouts/DefaultLayout";
 // import AdminLayout from "./Components/layouts/AdminLayout"; // Layout riêng cho Admin
 import Login from "./Components/Login/login";
 import SignUp from "./Components/Login/signUp";
+import Content from "./Components/layouts/ContentComponent/Content/content";
 
 export const sidebarContext = createContext();
 const cx = classNames.bind(styles);
@@ -35,7 +36,9 @@ function App() {
                   path={route.path}
                   element={
                     <Layout>
-                      <Page />
+                      <Content>
+                        <Page />
+                      </Content>
                     </Layout>
                   }
                 />
@@ -45,7 +48,7 @@ function App() {
             {/* Routes Admin */}
             {adminRoutes.map((route, index) => {
               const Page = route.component;
-              const Layout = route.layout; 
+              const Layout = route.layout;
 
               return (
                 <Route

@@ -9,6 +9,8 @@
   --form-color-hover: #dfe3e7;
   --font-color: #444746;
   --blue: #007bff;
+  --header-height: 80px;
+  --sidebar-width: 250px;
 }
 
 /* Ẩn thanh cuộn mặc định trên Chrome, Safari */
@@ -38,4 +40,9 @@
 }
 
 .wrapper {
+}
+
+body {
+  z-index: 0;
+  position: relative;
 }

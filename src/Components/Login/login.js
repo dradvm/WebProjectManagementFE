@@ -1,15 +1,16 @@
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import styles from "./login.module.scss";
 import InputField from "../layouts/LoginComponents/InputField";
 import Button from "../layouts/LoginComponents/Button";
 import { Link } from "react-router-dom";
 
-const Login = () => {
+const Login = ({ onClose }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
   const [loginMessage, setLoginMessage] = useState("");
+  const loginRef = useRef(null);
 
   const handleLogin = (e) => {
     e.preventDefault();
@@ -24,42 +25,49 @@ const Login = () => {
     }
   };
 
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (loginRef.current && !loginRef.current.contains(event.target)) {
+        onClose();
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [onClose]);
+
   return (
-    <div
-      className={styles.loginContainer}
-      style={{
-        position: "absolute",
-        top: "50%",
-        left: "50%",
-        transform: "translate(-50%, -50%)",
-      }}
-    >
-      <h2>Login Your Account</h2>
+    <div className={styles.overlay}>
+      {" "}
+      <div className={styles.loginContainer} ref={loginRef}>
+        <h2>Login Your Account</h2>
+        <form onSubmit={handleLogin}>
+          <InputField
+            type="email"
+            placeholder="Email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+          />
+          <InputField
+            type="password"
+            placeholder="Password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+          />
+          <div className={styles.ButtonContinue}>
+            <Button type="submit" text="Tiếp tục" width="300px" />
+          </div>
+        </form>
 
-      <form onSubmit={handleLogin}>
-        <InputField
-          type="email"
-          placeholder="Email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-        />
-        <InputField
-          type="password"
-          placeholder="Password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-        />
-        <div className={styles.ButtonContinue}>
-          <Button type="submit" text="Tiếp tục" width="300px" />
-        </div>
-      </form>
-
-      <p>
-        Don't have an account?{" "}
-        <Link className={styles.linkStyle} to="/signup">
-          Sign up
-        </Link>
-      </p>
+        <p>
+          Don't have an account?{" "}
+          <Link className={styles.linkStyle} to="/signup">
+            Sign up
+          </Link>
+        </p>
+      </div>
     </div>
   );
 };
