@@ -5,7 +5,7 @@ import InputField from "../layouts/LoginComponents/InputField";
 import Button from "../layouts/LoginComponents/Button";
 import { Link } from "react-router-dom";
 
-const Login = ({ onClose }) => {
+const Login = ({ onClose,setIsAuthenticated }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();

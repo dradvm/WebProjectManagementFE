@@ -28,6 +28,14 @@ function App() {
       >
         <GlobalStyles>
           <Routes>
+          {!isAuthenticated ? (
+              <>
+                <Route path="/login" element={<Login setIsAuthenticated={setIsAuthenticated} />} />
+                <Route path="/signup" element={<SignUp />} />
+                <Route path="*" element={<Navigate to="/login" replace />} />
+              </>
+            ) : (
+              <>
             {/* Routes Public */}
             {publicRoutes.map((route, index) => {
               const Page = route.component;
@@ -47,7 +55,7 @@ function App() {
                 />
               );
             })}
-
+            
             {/* Routes Admin */}
             {adminRoutes.map((route, index) => {
               const Page = route.component;
@@ -65,6 +73,8 @@ function App() {
                 />
               );
             })}
+           </>
+            )}
           </Routes>
         </GlobalStyles>
       </sidebarContext.Provider>
