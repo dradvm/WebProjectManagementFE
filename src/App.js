@@ -9,6 +9,7 @@ import DefaultLayout from "./Components/layouts/DefaultLayout";
 
 import Login from "./Components/Login/login";
 import SignUp from "./Components/Login/signUp";
+import Content from "./Components/layouts/ContentComponent/Content/content";
 
 export const sidebarContext = createContext();
 const cx = classNames.bind(styles);
@@ -27,49 +28,43 @@ function App() {
       >
         <GlobalStyles>
           <Routes>
-            {!isAuthenticated ? (
-              <>
-                <Route path="/login" element={<Login setIsAuthenticated={setIsAuthenticated} />} />
-                <Route path="/signup" element={<SignUp />} />
-                <Route path="*" element={<Navigate to="/login" replace />} />
-              </>
-            ) : (
-              <>
-                {/* Routes Public */}
-                {publicRoutes.map((route, index) => {
-                  const Page = route.component;
-                  const Layout = route.layout === null ? Fragment : route.layout;
-                  return (
-                    <Route
-                      key={index}
-                      path={route.path}
-                      element={
-                        <Layout>
-                          <Page />
-                        </Layout>
-                      }
-                    />
-                  );
-                })}
+            {/* Routes Public */}
+            {publicRoutes.map((route, index) => {
+              const Page = route.component;
+              const Layout = route.layout === null ? Fragment : route.layout;
 
-                {/* Routes Admin */}
-                {adminRoutes.map((route, index) => {
-                  const Page = route.component;
-                  const Layout = route.layout;
-                  return (
-                    <Route
-                      key={index}
-                      path={route.path}
-                      element={
-                        <Layout>
-                          <Page />
-                        </Layout>
-                      }
-                    />
-                  );
-                })}
-              </>
-            )}
+              return (
+                <Route
+                  key={index}
+                  path={route.path}
+                  element={
+                    <Layout>
+                      <Content>
+                        <Page />
+                      </Content>
+                    </Layout>
+                  }
+                />
+              );
+            })}
+
+            {/* Routes Admin */}
+            {adminRoutes.map((route, index) => {
+              const Page = route.component;
+              const Layout = route.layout;
+
+              return (
+                <Route
+                  key={index}
+                  path={route.path}
+                  element={
+                    <Layout>
+                      <Page />
+                    </Layout>
+                  }
+                />
+              );
+            })}
           </Routes>
         </GlobalStyles>
       </sidebarContext.Provider>

@@ -5,21 +5,25 @@ import { useState } from "react";
 import Login from "../../Login/login";
 import SignUp from "../../Login/signUp";
 import Button from "../LoginComponents/Button";
+import { Link } from "react-router-dom";
 const cx = classNames.bind(styles);
 function Header() {
   const [isLogin, setIsLogin] = useState(false);
   const [isSignup, setIsSignup] = useState(false);
+
   return (
     <div className={cx("wrapper")}>
-      <div className={cx("header-logo-wrapper")}>
-        <img src="/assets/logo.png" className={cx("logo")} />
-        <p className={cx("title")}>CTU-Drive</p>
-      </div>
+      <Link to={"/"} style={{ textDecoration: "none" }}>
+        <div className={cx("header-logo-wrapper")}>
+          <img src="/assets/logo.png" className={cx("logo")} />
+          <p className={cx("title")}>CTU-Drive</p>
+        </div>
+      </Link>
       <div>
         <Button
           text="Đăng nhập"
           onClick={() => {
-            setIsLogin((prev) => !prev);
+            setIsLogin(true);
             setIsSignup(false);
           }}
           width={"150px"}
@@ -28,13 +32,14 @@ function Header() {
         <Button
           text="Đăng ký"
           onClick={() => {
-            setIsSignup((prev) => !prev);
+            setIsSignup(true);
             setIsLogin(false);
           }}
           width={"150px"}
         />
-        {isLogin && <Login />}
-        {isSignup && <SignUp />}
+
+        {isLogin && <Login onClose={() => setIsLogin(false)} />}
+        {isSignup && <SignUp onClose={() => setIsSignup(false)} />}
       </div>
     </div>
   );

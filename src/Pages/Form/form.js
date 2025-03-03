@@ -7,7 +7,7 @@ const cx = classNames.bind(styles);
 function Form() {
   const [forms, setForms] = useState([]);
   useEffect(() => {
-    fetch("http://localhost:3001/items")
+    fetch("http://localhost:3000/items")
       .then((response) => response.json())
       .then((data) => setForms(data));
   }, []);
