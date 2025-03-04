@@ -1,5 +1,11 @@
 import GlobalStyles from "./GlobalStyles/globalStyle";
-import { BrowserRouter, Route, Routes, Navigate, useNavigate } from "react-router-dom";
+import {
+  BrowserRouter,
+  Route,
+  Routes,
+  Navigate,
+  useNavigate,
+} from "react-router-dom";
 import classNames from "classnames/bind";
 import styles from "./App.module.scss";
 import { createContext, useState } from "react";
@@ -17,68 +23,74 @@ const cx = classNames.bind(styles);
 function App() {
   const [sidebarIndexClicked, setSidebarIndexClicked] = useState(null);
   const [userRole, setUserRole] = useState("admin"); // Giả lập role, sau này có thể lấy từ API hoặc localStorage
-// import AdminLayout from "./Components/layouts/AdminLayout"; // Layout riêng cho Admin
-  const [isAuthenticated, setIsAuthenticated] = useState(!!localStorage.getItem("token"));
-  const navigate = useNavigate();
-
+  // import AdminLayout from "./Components/layouts/AdminLayout"; // Layout riêng cho Admin
+  const [isAuthenticated, setIsAuthenticated] = useState(
+    !!localStorage.getItem("token")
+  );
   return (
-    
-      <sidebarContext.Provider
-        value={{ sidebarIndexClicked, setSidebarIndexClicked, userRole }}
-      >
-        <GlobalStyles>
-          <Routes>
+    <sidebarContext.Provider
+      value={{ sidebarIndexClicked, setSidebarIndexClicked, userRole }}
+    >
+      <GlobalStyles>
+        <Routes>
           {!isAuthenticated ? (
-              <>
-                <Route path="/login" element={<Login setIsAuthenticated={setIsAuthenticated} />} />
-                <Route path="/signup" element={<SignUp />} />
-                <Route path="*" element={<Navigate to="/login" replace />} />
-              </>
-            ) : (
-              <>
-            {/* Routes Public */}
-            {publicRoutes.map((route, index) => {
-              const Page = route.component;
-              const Layout = route.layout === null ? Fragment : route.layout;
+            <>
+              <Route
+                path="/login"
+                element={
+                  <Login
+                    setIsAuthenticated={setIsAuthenticated}
+                    onClose={() => {}}
+                  />
+                }
+              />
+              <Route path="/signup" element={<SignUp onClose={() => {}} />} />
+              <Route path="*" element={<Navigate to="/login" replace />} />
+            </>
+          ) : (
+            <>
+              {/* Routes Public */}
+              {publicRoutes.map((route, index) => {
+                const Page = route.component;
+                const Layout = route.layout === null ? Fragment : route.layout;
 
-              return (
-                <Route
-                  key={index}
-                  path={route.path}
-                  element={
-                    <Layout>
-                      <Content>
+                return (
+                  <Route
+                    key={index}
+                    path={route.path}
+                    element={
+                      <Layout>
+                        <Content>
+                          <Page />
+                        </Content>
+                      </Layout>
+                    }
+                  />
+                );
+              })}
+
+              {/* Routes Admin */}
+              {adminRoutes.map((route, index) => {
+                const Page = route.component;
+                const Layout = route.layout;
+
+                return (
+                  <Route
+                    key={index}
+                    path={route.path}
+                    element={
+                      <Layout>
                         <Page />
-                      </Content>
-                    </Layout>
-                  }
-                />
-              );
-            })}
-            
-            {/* Routes Admin */}
-            {adminRoutes.map((route, index) => {
-              const Page = route.component;
-              const Layout = route.layout;
-
-              return (
-                <Route
-                  key={index}
-                  path={route.path}
-                  element={
-                    <Layout>
-                      <Page />
-                    </Layout>
-                  }
-                />
-              );
-            })}
-           </>
-            )}
-          </Routes>
-        </GlobalStyles>
-      </sidebarContext.Provider>
-    
+                      </Layout>
+                    }
+                  />
+                );
+              })}
+            </>
+          )}
+        </Routes>
+      </GlobalStyles>
+    </sidebarContext.Provider>
   );
 }
 

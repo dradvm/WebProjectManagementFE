@@ -5,13 +5,14 @@ import InputField from "../layouts/LoginComponents/InputField";
 import Button from "../layouts/LoginComponents/Button";
 import { Link } from "react-router-dom";
 
-const Login = ({ onClose,setIsAuthenticated }) => {
+const Login = ({ setIsAuthenticated, onClose }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
   const [loginMessage, setLoginMessage] = useState("");
   const loginRef = useRef(null);
-
+  console.log(setIsAuthenticated);
+  console.log(onClose);
   const handleLogin = (e) => {
     e.preventDefault();
     if (email === "test@gmail.com" && password === "123456") {
@@ -25,19 +26,6 @@ const Login = ({ onClose,setIsAuthenticated }) => {
       setLoginMessage("Invalid email or password. Please try again!");
     }
   };
-
-  useEffect(() => {
-    const handleClickOutside = (event) => {
-      if (loginRef.current && !loginRef.current.contains(event.target)) {
-        onClose();
-      }
-    };
-
-    document.addEventListener("mousedown", handleClickOutside);
-    return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
-    };
-  }, [onClose]);
 
   return (
     <div className={styles.overlay}>
