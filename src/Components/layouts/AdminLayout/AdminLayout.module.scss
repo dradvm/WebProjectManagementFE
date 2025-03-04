@@ -1,5 +1,5 @@
 .admin-layout {
-    display: flex;
+    // display: flex;
     height: 100vh; // Chiều cao toàn màn hình
   }
   
@@ -15,5 +15,6 @@
     padding: 20px;
     background-color: #f4f4f4;
     overflow-y: auto; // Cho phép cuộn nếu nội dung dài
+    margin: var(--header-height) 0 0 var(--sidebar-width); // Khoảng cách giữa content và header, sidebar
   }
   

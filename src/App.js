@@ -80,7 +80,9 @@ function App() {
                     path={route.path}
                     element={
                       <Layout>
-                        <Page />
+                        <Content>
+                          <Page />
+                        </Content>
                       </Layout>
                     }
                   />
