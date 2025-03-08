@@ -98,7 +98,7 @@ const ManageUsers = () => {
 
   return (
     <div className={styles["table-container"]}>
-      <h2 className={styles["title"]}>Quản lý Người Dùng</h2>
+      <h2 className={styles["title"]}>QUẢN LÝ NGƯỜI DÙNG</h2>
       <div className={styles["button-container"]}>
         <Button className={styles["add-user-button"]} onClick={() => setIsModalOpen(true)}>
           Thêm người dùng
