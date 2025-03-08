@@ -123,5 +123,54 @@
       "name": "ư",
       "url": "ư"
     }
+  ],
+  "users": [
+    {
+      "id": "B123456",
+      "fullName": "Đức",
+      "gender": "Nam",
+      "phone": "0123456789",
+      "email": "Duc@gmail.com",
+      "role": "User",
+      "status": "Hoạt động"
+    },
+    {
+      "id": "B000000",
+      "fullName": "Anh",
+      "gender": "Nam",
+      "phone": "0987654321",
+      "email": "anh@gmail.com",
+      "role": "User",
+      "status": "Hoạt động"
+    },
+    {
+      "id": "B111111",
+      "fullName": "Hào",
+      "gender": "Nam",
+      "phone": "0865475344",
+      "email": "hao@gmail.com",
+      "role": "User",
+      "status": "Hoạt động"
+    },
+    {
+      "id": "B201201",
+      "fullName": "Hân",
+      "gender": "Nữ",
+      "phone": "0999888777",
+      "email": "han@gmail.com",
+      "role": "User",
+      "password": "123456",
+      "status": "Hoạt động"
+    },
+    {
+      "id": "B987890",
+      "fullName": "Duy",
+      "gender": "Nam",
+      "phone": "098989898",
+      "email": "duy@gmail.com",
+      "role": "User",
+      "password": "1234567",
+      "status": "Hoạt động"
+    }
   ]
 }

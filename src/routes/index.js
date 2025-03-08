@@ -10,9 +10,6 @@ import AdminDashboard from "../../src/Pages/Admin/AdminDashboard";
 import AdminLayout from "../../src/Components/layouts/AdminLayout/AdminLayout"; // Import layout mới
 import Login from "../Components/Login/login";
 import Signup from "../Components/Login/signUp";
-import AddUser from "../Pages/Admin/AddUser";
-import EditUser from "../Pages/Admin/EditUser";
-import DisableUser from "../Pages/Admin/DisableUser";
 
 export const publicRoutes = [
   { path: "/", component: Home, layout: DefaultLayout },
@@ -29,9 +26,6 @@ export const adminRoutes = [
   { path: "/dashboard", component: AdminDashboard, layout: AdminLayout },
   { path: "/users", component: ManageUsers, layout: AdminLayout },
   { path: "/settings", component: AdminSettings, layout: AdminLayout },
-  { path: "/users/add", component: AddUser, layout: AdminLayout },
-  { path: "/users/edit/:id", component: EditUser, layout: AdminLayout },
-  { path: "/users/disable/:id", component: DisableUser, layout: AdminLayout }
 ];
 
 export const sidebarItems = [
@@ -98,32 +92,9 @@ export const adminSidebarItems = [
     id: 1,
     name: "Quản lý người dùng",
     icon: "faUsers",
-    children: [
-      {
-        id: 11,
-        name: "Thêm tài khoản",
-        icon: "faUserPlus",
-        path: "/users/add",
-        component: AddUser,
-        layout: DefaultLayout,
-      },
-      {
-        id: 12,
-        name: "Sửa tài khoản",
-        icon: "faEdit",
-        path: "/users/edit/:id",
-        component: EditUser,
-        layout: DefaultLayout,
-      },
-      {
-        id: 13,
-        name: "Vô hiệu hóa tài khoản",
-        icon: "faBan",
-        path: "/users/disable/:id",
-        component: DisableUser,
-        layout: DefaultLayout,
-      },
-    ],
+    path: "/users",
+    component: ManageUsers,
+    layout: DefaultLayout,
   },
   {
     id: 2,

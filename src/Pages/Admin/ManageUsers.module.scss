@@ -1,0 +1,119 @@
+.table-container {
+    padding: 20px;
+    background: rgb(245, 240, 240);
+    border-radius: 10px;
+  }
+  
+  .title {
+    font-size: 24px;
+    font-weight: bold;
+    text-align: center;
+    color: #007bff;
+    margin-bottom: 20px;
+  }
+  
+  .button-container {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 16px;
+  }
+  
+  .add-user-button {
+    background-color: #28a745;
+    color: white;
+    border: none;
+    font-weight: bold;
+    border-radius: 8px;
+    transition: 0.3s ease-in-out;
+  
+    &:hover {
+      background-color: #218838;
+      transform: scale(1.05);
+    }
+  }
+  
+  .custom-table .ant-table-thead > tr > th {
+    background-color: #1d73cf !important;
+    color: rgb(73, 155, 199);
+    font-weight: bold;
+    text-align: center;
+  }
+  
+  .status-active {
+    color: green;
+    font-weight: bold;
+  }
+  
+  .status-disabled {
+    color: red;
+    font-weight: bold;
+  }
+  
+  .edit-button {
+    background-color: #ffc107;
+    color: black;
+    border: none;
+    transition: 0.3s ease;
+  
+    &:hover {
+      background-color: #e0a800;
+      transform: scale(1.05);
+    }
+  }
+  
+  .disable-button {
+    background-color: #dc3545;
+    color: white;
+    border: none;
+    transition: 0.3s ease;
+  
+    &:hover {
+      background-color: #c82333;
+      transform: scale(1.05);
+    }
+  }
+  
+  .activate-button {
+    background-color: #17a2b8;
+    color: white;
+    border: none;
+    transition: 0.3s ease;
+  
+    &:hover {
+      background-color: #138496;
+      transform: scale(1.05);
+    }
+  }
+  
+  /* 🆕 Style cho Modal */
+  .modal-form {
+    .ant-form-item {
+      margin-bottom: 16px;
+    }
+  
+    .ant-input,
+    .ant-select-selector {
+      border-radius: 8px;
+      padding: 10px;
+      transition: all 0.3s ease;
+  
+      &:focus,
+      &:hover {
+        border-color: #1890ff !important;
+        box-shadow: 0 0 5px rgba(24, 144, 255, 0.5);
+      }
+    }
+  
+    .ant-btn-primary {
+      background-color: #1d73cf;
+      border-radius: 8px;
+      padding: 8px 16px;
+      font-weight: bold;
+  
+      &:hover {
+        background-color: #135ba1;
+        transform: scale(1.05);
+      }
+    }
+  }
+  
