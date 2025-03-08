@@ -1,0 +1,6 @@
+.wrapper {
+  display: flex;
+  flex-direction: row;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, var(--form-width)));
+}

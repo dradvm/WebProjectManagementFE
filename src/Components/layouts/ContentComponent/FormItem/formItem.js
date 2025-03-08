@@ -14,7 +14,6 @@ function FormItem({ url, name, date, id }) {
     { name: "Xóa forms", type: "delete" },
     { name: "Chỉnh sửa", type: "edit" },
   ];
-  // Xử lý khi click vào FormItem
   const handleClick = (event) => {
     if (menuRef.current && menuRef.current.contains(event.target)) {
       event.stopPropagation();

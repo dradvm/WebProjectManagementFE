@@ -22,8 +22,9 @@ const cx = classNames.bind(styles);
 
 function App() {
   const FORMS_API = "http://localhost:3000/items";
+  const TRASH_API = "http://localhost:3000/trash";
   const [forms, setForms] = useState([]);
-
+  const [trash, setTrash] = useState([]);
   const [sidebarIndexClicked, setSidebarIndexClicked] = useState(null);
   const [userRole, setUserRole] = useState("admin"); // Giả lập role, sau này có thể lấy từ API hoặc localStorage
   // import AdminLayout from "./Components/layouts/AdminLayout"; // Layout riêng cho Admin
@@ -39,6 +40,9 @@ function App() {
         FORMS_API,
         forms,
         setForms,
+        trash,
+        setTrash,
+        TRASH_API,
       }}
     >
       <GlobalStyles>

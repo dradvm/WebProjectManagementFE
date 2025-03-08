@@ -1,133 +1,226 @@
 {
   "items": [
     {
+      "id": "1",
+      "name": "Google",
+      "url": "https://www.google.com",
+      "date": "2025-02-10"
+    },
+    {
+      "id": "2",
+      "name": "YouTube",
+      "url": "https://www.youtube.com",
+      "date": "2025-02-10"
+    },
+    {
+      "id": "3",
+      "name": "Facebook",
+      "url": "https://www.facebook.com",
+      "date": "2025-02-10"
+    },
+    {
+      "id": "4",
+      "name": "Wikipedia",
+      "url": "https://www.wikipedia.org",
+      "date": "2025-02-10"
+    },
+    {
+      "id": "5",
+      "name": "VnExpress",
+      "url": "https://vnexpress.net",
+      "date": "2025-02-10"
+    },
+    {
+      "id": "6",
+      "name": "Shopee",
+      "url": "https://shopee.vn",
+      "date": "2025-02-10"
+    },
+    {
+      "id": "7",
+      "name": "Zalo",
+      "url": "https://zalo.me",
+      "date": "2025-02-10"
+    },
+    {
+      "id": "12",
+      "name": "Lazada",
+      "url": "https://lazada.vn",
+      "date": "2025-02-10"
+    },
+    {
       "id": "13",
-      "name": "Twitter",
-      "url": "https://www.twitter.com",
-      "date": "2025-02-16"
+      "name": "FPT",
+      "url": "https://fpt.com.vn",
+      "date": "2025-02-10"
     },
     {
       "id": "14",
-      "name": "LinkedIn",
-      "url": "https://www.linkedin.com",
-      "date": "2025-02-15"
+      "name": "VOV",
+      "url": "https://vov.vn",
+      "date": "2025-02-10"
     },
     {
       "id": "15",
-      "name": "Reddit",
-      "url": "https://www.reddit.com",
-      "date": "2025-02-14"
+      "name": "Zing News",
+      "url": "https://zingnews.vn",
+      "date": "2025-02-10"
     },
     {
       "id": "16",
-      "name": "Instagram",
-      "url": "https://www.instagram.com",
-      "date": "2025-02-13"
+      "name": "Dantri",
+      "url": "https://dantri.com.vn",
+      "date": "2025-02-10"
     },
     {
       "id": "17",
-      "name": "Snapchat",
-      "url": "https://www.snapchat.com",
-      "date": "2025-02-12"
+      "name": "Tuoi Tre",
+      "url": "https://tuoitre.vn",
+      "date": "2025-02-10"
     },
     {
       "id": "18",
-      "name": "Pinterest",
-      "url": "https://www.pinterest.com",
-      "date": "2025-02-11"
+      "name": "VTC",
+      "url": "https://vtc.vn",
+      "date": "2025-02-10"
     },
     {
       "id": "19",
+      "name": "VNExpress International",
+      "url": "https://e.vnexpress.net",
+      "date": "2025-02-10"
+    },
+    {
+      "id": "20",
+      "name": "Viber",
+      "url": "https://www.viber.com",
+      "date": "2025-02-10"
+    },
+    {
+      "id": "21",
+      "name": "Flickr",
+      "url": "https://www.flickr.com",
+      "date": "2025-02-10"
+    },
+    {
+      "id": "22",
+      "name": "Reddit",
+      "url": "https://www.reddit.com",
+      "date": "2025-02-10"
+    },
+    {
+      "id": "23",
+      "name": "Amazon",
+      "url": "https://www.amazon.com",
+      "date": "2025-02-10"
+    },
+    {
+      "id": "24",
+      "name": "Bing",
+      "url": "https://www.bing.com",
+      "date": "2025-02-10"
+    },
+    {
+      "id": "25",
+      "name": "Yahoo",
+      "url": "https://www.yahoo.com",
+      "date": "2025-02-10"
+    },
+    {
+      "id": "26",
+      "name": "CNN",
+      "url": "https://www.cnn.com",
+      "date": "2025-02-10"
+    },
+    {
+      "id": "27",
+      "name": "BBC",
+      "url": "https://www.bbc.com",
+      "date": "2025-02-10"
+    },
+    {
+      "id": "28",
+      "name": "Instagram",
+      "url": "https://www.instagram.com",
+      "date": "2025-02-10"
+    },
+    {
+      "id": "29",
+      "name": "Twitter",
+      "url": "https://www.twitter.com",
+      "date": "2025-02-10"
+    },
+    {
+      "id": "30",
+      "name": "Pinterest",
+      "url": "https://www.pinterest.com",
+      "date": "2025-02-10"
+    },
+    {
+      "id": "31",
+      "name": "LinkedIn",
+      "url": "https://www.linkedin.com",
+      "date": "2025-02-10"
+    },
+    {
+      "id": "32",
+      "name": "TikTok",
+      "url": "https://www.tiktok.com",
+      "date": "2025-02-10"
+    },
+    {
+      "id": "33",
+      "name": "Netflix",
+      "url": "https://www.netflix.com",
+      "date": "2025-02-10"
+    },
+    {
+      "id": "34",
       "name": "Spotify",
       "url": "https://www.spotify.com",
       "date": "2025-02-10"
     },
     {
-      "id": "20",
-      "name": "WhatsApp",
-      "url": "https://www.whatsapp.com",
-      "date": "2025-02-09"
+      "id": "35",
+      "name": "Quora",
+      "url": "https://www.quora.com",
+      "date": "2025-02-10"
     },
     {
-      "id": "21",
-      "name": "Vimeo",
-      "url": "https://www.vimeo.com",
-      "date": "2025-02-08"
+      "id": "36",
+      "name": "Stack Overflow",
+      "url": "https://stackoverflow.com",
+      "date": "2025-02-10"
     },
     {
-      "id": "22",
-      "name": "TikTok",
-      "url": "https://www.tiktok.com",
-      "date": "2025-02-07"
+      "id": "37",
+      "name": "Baidu",
+      "url": "https://www.baidu.com",
+      "date": "2025-02-10"
     },
     {
-      "id": "24",
-      "name": "Microsoft",
-      "url": "https://www.microsoft.com",
-      "date": "2025-02-05"
+      "id": "38",
+      "name": "Wikipedia Việt Nam",
+      "url": "https://vi.wikipedia.org",
+      "date": "2025-02-10"
     },
     {
-      "id": "25",
-      "name": "Apple",
-      "url": "https://www.apple.com",
-      "date": "2025-02-04"
+      "id": "39",
+      "name": "Zing MP3",
+      "url": "https://zingmp3.vn",
+      "date": "2025-02-10"
     },
     {
-      "id": "26",
-      "name": "Slack",
-      "url": "https://www.slack.com",
-      "date": "2025-02-03"
-    },
-    {
-      "id": "261",
-      "name": "aaa",
-      "url": "aaa"
-    },
-    {
-      "id": "2611",
-      "name": "qqq",
-      "url": "qqq"
-    },
-    {
-      "id": "2612",
-      "name": "ca",
-      "url": "ca"
-    },
-    {
-      "id": "2613",
-      "name": "a",
-      "url": "a"
-    },
-    {
-      "id": "2614",
-      "name": "q",
-      "url": "q"
-    },
-    {
-      "id": "2615",
-      "name": "s",
-      "url": "s"
-    },
-    {
-      "id": "2616",
-      "name": "a",
-      "url": "a"
-    },
-    {
-      "id": "2617",
-      "name": "1",
-      "url": "1"
-    },
-    {
-      "id": "2618",
-      "name": "ư",
-      "url": "ư"
+      "id": "40",
+      "name": "Viber",
+      "url": "https://www.viber.com",
+      "date": "2025-02-10"
     }
   ],
   "users": [
     {
       "id": "B123456",
-      "fullName": "Đức",
+      "fullName": "Đức Đẹp trai",
       "gender": "Nam",
       "phone": "0123456789",
       "email": "Duc@gmail.com",
@@ -181,6 +274,68 @@
       "password": "123321123",
       "role": "Admin",
       "status": "Hoạt động"
+    }
+  ],
+  "trash": [
+    {
+      "id": "19",
+      "name": "Spotify",
+      "url": "https://www.spotify.com",
+      "date": "2025-02-10"
+    },
+    {
+      "id": "20",
+      "name": "WhatsApp",
+      "url": "https://www.whatsapp.com",
+      "date": "2025-02-09"
+    },
+    {
+      "id": "21",
+      "name": "Vimeo",
+      "url": "https://www.vimeo.com",
+      "date": "2025-02-08"
+    },
+    {
+      "id": "22",
+      "name": "TikTok",
+      "url": "https://www.tiktok.com",
+      "date": "2025-02-07"
+    },
+    {
+      "id": "26",
+      "name": "Slack",
+      "url": "https://www.slack.com",
+      "date": "2025-02-03"
+    },
+    {
+      "id": "24",
+      "name": "Microsoft",
+      "url": "https://www.microsoft.com",
+      "date": "2025-02-05"
+    },
+    {
+      "id": "8",
+      "name": "24h",
+      "url": "https://24h.com.vn",
+      "date": "2025-02-10"
+    },
+    {
+      "id": "9",
+      "name": "VTV",
+      "url": "https://vtv.vn",
+      "date": "2025-02-10"
+    },
+    {
+      "id": "10",
+      "name": "Kenh14",
+      "url": "https://kenh14.vn",
+      "date": "2025-02-10"
+    },
+    {
+      "id": "11",
+      "name": "Tiki",
+      "url": "https://tiki.vn",
+      "date": "2025-02-10"
     }
   ]
 }

@@ -6,20 +6,26 @@ import { itemsContext } from "../../App";
 const cx = classNames.bind(styles);
 
 export const formsContext = createContext();
+
 function Form() {
   const { FORMS_API, forms, setForms } = useContext(itemsContext);
+
   useEffect(() => {
     fetch(FORMS_API)
       .then((response) => response.json())
       .then((data) => {
-        setForms(data);
+        if (Array.isArray(data)) {
+          setForms(data);
+        } else {
+          setForms([]);
+        }
       });
-  }, []);
+  }, [FORMS_API, setForms]);
 
   return (
-    <formsContext.Provider value={{ forms, setForms }}>
-      <div className={cx("wrapper")}>
-        {forms.map((form, index) => {
+    <div className={cx("wrapper")}>
+      {forms.length > 0 ? (
+        forms.map((form, index) => {
           return (
             <FormItem
               key={index}
@@ -29,9 +35,11 @@ function Form() {
               id={form.id}
             />
           );
-        })}
-      </div>
-    </formsContext.Provider>
+        })
+      ) : (
+        <p>No forms available.</p>
+      )}
+    </div>
   );
 }
 

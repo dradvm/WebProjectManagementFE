@@ -3,7 +3,7 @@ import { Table, Button, Modal, Form, Input, Select } from "antd";
 import axios from "axios";
 import styles from "./ManageUsers.module.scss";
 
-const API_URL = "http://localhost:5000/users";
+const API_URL = "http://localhost:3000/users";
 
 const ManageUsers = () => {
   const [users, setUsers] = useState([]);

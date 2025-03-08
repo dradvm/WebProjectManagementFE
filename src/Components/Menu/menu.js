@@ -2,28 +2,50 @@ import classNames from "classnames/bind";
 import styles from "./menu.module.scss";
 import { useState, useContext, useEffect } from "react";
 import { itemsContext } from "../../App";
+import axios from "axios";
 
 const cx = classNames.bind(styles);
-function Menu({ items = [], id }) {
-  const { FORMS_API } = useContext(itemsContext);
-  const { forms, setForms } = useContext(itemsContext);
-  const [isHover, setIsHover] = useState();
-  const handleClick = (item) => {
-    console.log(`${FORMS_API}/${id}`);
 
+function Menu({ items = [], id }) {
+  const { FORMS_API, forms, setForms, trash, setTrash, TRASH_API } =
+    useContext(itemsContext);
+  const [isHover, setIsHover] = useState();
+
+  const handleClick = (item) => {
     if (item.type === "delete") {
+      fetch(`${FORMS_API}/${id}`, {
+        method: "GET",
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          axios.post(TRASH_API, data);
+        });
       fetch(`${FORMS_API}/${id}`, {
         method: "DELETE",
       })
         .then((response) => response.json())
         .then(() => {
-          fetch(FORMS_API)
-            .then((res) => res.json())
-            .then((data) => setForms(data));
-        })
-        .catch((error) => {
-          console.error("Lỗi khi xóa", error);
+          setForms((prevForms) => prevForms.filter((form) => form.id !== id));
         });
+    }
+
+    if (item.type === "edit") {
+      fetch(`${FORMS_API}/${id}`, {
+        method: "GET",
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          setForms((prevForms) =>
+            prevForms.map((form) =>
+              form.id === id ? { ...form, ...data } : form
+            )
+          );
+        });
+
+      const selectItem = forms.find((form) => form.id == id);
+      if (selectItem) {
+        window.open(selectItem.url, "_blank");
+      }
     }
   };
 
