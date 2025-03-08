@@ -17,10 +17,13 @@ import Login from "./Components/Login/login";
 import SignUp from "./Components/Login/signUp";
 import Content from "./Components/layouts/ContentComponent/Content/content";
 
-export const sidebarContext = createContext();
+export const itemsContext = createContext();
 const cx = classNames.bind(styles);
 
 function App() {
+  const FORMS_API = "http://localhost:3000/items";
+  const [forms, setForms] = useState([]);
+
   const [sidebarIndexClicked, setSidebarIndexClicked] = useState(null);
   const [userRole, setUserRole] = useState("admin"); // Giả lập role, sau này có thể lấy từ API hoặc localStorage
   // import AdminLayout from "./Components/layouts/AdminLayout"; // Layout riêng cho Admin
@@ -28,8 +31,15 @@ function App() {
     !!localStorage.getItem("token")
   );
   return (
-    <sidebarContext.Provider
-      value={{ sidebarIndexClicked, setSidebarIndexClicked, userRole }}
+    <itemsContext.Provider
+      value={{
+        sidebarIndexClicked,
+        setSidebarIndexClicked,
+        userRole,
+        FORMS_API,
+        forms,
+        setForms,
+      }}
     >
       <GlobalStyles>
         <Routes>
@@ -92,7 +102,7 @@ function App() {
           )}
         </Routes>
       </GlobalStyles>
-    </sidebarContext.Provider>
+    </itemsContext.Provider>
   );
 }
 

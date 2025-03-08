@@ -13,3 +13,106 @@
     transition-duration: 0.3s;
   }
 }
+
+input {
+  height: 40px;
+  padding: 8px;
+  margin-top: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 14px;
+  margin-bottom: 15px;
+  flex: 1;
+  margin-left: 15px;
+}
+
+button.publish-btn {
+  margin-top: 10px;
+  padding: 8px 16px;
+  background-color: #008cba;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+
+  &:hover {
+    background-color: #007bb5;
+    transform: scale(1.05);
+  }
+}
+
+.published-message {
+  padding: 40px;
+  position: absolute;
+  top: 40vh;
+  left: 50vw;
+  width: 500px;
+  transform: translate(-50%, -50%);
+  background-color: white;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+  border-radius: 10px;
+  z-index: 1;
+  text-align: center;
+  transition: all 0.3s ease-in-out;
+
+  /* Thêm hiệu ứng hover cho cả phần tử */
+  &:hover {
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    transform: translate(-50%, -50%) scale(1.02);
+  }
+}
+
+.success-message {
+  font-size: 18px;
+  font-weight: bold;
+  color: var(--blue);
+  margin-bottom: 15px;
+}
+
+.form-details {
+  display: flex;
+  flex-direction: column;
+  & > div {
+    display: flex;
+    flex-direction: row;
+  }
+  label {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--font-color);
+    margin-bottom: 5px;
+  }
+
+  .input-field {
+    padding: 10px;
+    margin-top: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 14px;
+    color: var(--font-color);
+    background-color: #f9f9f9;
+
+    &:focus {
+      border-color: var(--blue);
+      outline: none;
+    }
+
+    &::placeholder {
+      color: #999;
+    }
+  }
+}
+
+a {
+  color: #007bb5;
+  text-decoration: none;
+  font-weight: bold;
+  transition: color 0.3s ease;
+
+  &:hover {
+    color: #005f87;
+    text-decoration: underline;
+  }
+}

@@ -26,7 +26,6 @@ function Header() {
       </Link>
       <div>
         <Button text="Đăng xuất" onClick={handleLogout} width={"150px"} />
-        {console.log(logout)}
       </div>
     </div>
   );

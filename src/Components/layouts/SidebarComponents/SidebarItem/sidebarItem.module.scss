@@ -25,4 +25,8 @@
   font-size: 16px;
   font-weight: 500;
   text-decoration: none;
+  &:hover {
+    text-decoration: none;
+    color: var(--font-color);
+  }
 }

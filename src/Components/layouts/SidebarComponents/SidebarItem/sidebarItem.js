@@ -3,7 +3,7 @@ import React, { useContext, useEffect, useState } from "react";
 import styles from "./sidebarItem.module.scss";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import * as solidIcons from "@fortawesome/free-solid-svg-icons";
-import { sidebarContext } from "../../../../App";
+import { itemsContext } from "../../../../App";
 import { Link } from "react-router-dom";
 
 const cx = classNames.bind(styles);
@@ -13,7 +13,7 @@ function SidebarItem({ item, onClick, isChildren, styles, index }) {
   const [isHovered, setIsHovered] = useState(false);
   const [isOpen, setIsOpen] = useState(false); // Kiểm soát mở menu con
   const { sidebarIndexClicked, setSidebarIndexClicked } =
-    useContext(sidebarContext);
+    useContext(itemsContext);
   const [active, setActive] = useState(false);
   const isActive = sidebarIndexClicked === item.path;
   useEffect(() => {

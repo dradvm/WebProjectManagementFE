@@ -5,14 +5,12 @@ import InputField from "../layouts/LoginComponents/InputField";
 import Button from "../layouts/LoginComponents/Button";
 import { Link } from "react-router-dom";
 
-const Login = ({ setIsAuthenticated, onClose }) => {
+const Login = ({ setIsAuthenticated }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
   const [loginMessage, setLoginMessage] = useState("");
   const loginRef = useRef(null);
-  console.log(setIsAuthenticated);
-  console.log(onClose);
   const handleLogin = (e) => {
     e.preventDefault();
     if (email === "test@gmail.com" && password === "123456") {

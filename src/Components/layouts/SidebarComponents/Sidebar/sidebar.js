@@ -4,14 +4,14 @@ import SidebarItem from "../SidebarItem/sidebarItem";
 import styles from "./sidebar.module.scss";
 import classNames from "classnames/bind";
 import { useContext, useState } from "react";
-import { sidebarContext } from "../../../../App";
+import { itemsContext } from "../../../../App";
 import { Link, useLocation } from "react-router-dom";
 
 const cx = classNames.bind(styles);
 
 function Sidebar() {
   const [active, setActive] = useState(0);
-  const sidebarContextData = useContext(sidebarContext);
+  const sidebarContextData = useContext(itemsContext);
   const location = useLocation();
 
   if (!sidebarContextData) {
@@ -20,7 +20,7 @@ function Sidebar() {
 
   const { userRole } = sidebarContextData; // Lấy userRole từ context
 
-  const isAdmin = userRole === "admin"; // Kiểm tra quyền admin
+  const isAdmin = userRole === "user"; // Kiểm tra quyền admin
 
   return (
     <div className={cx("wrapper")}>

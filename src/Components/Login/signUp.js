@@ -4,7 +4,7 @@ import InputField from "../../Components/layouts/LoginComponents/InputField";
 import styles from "./login.module.scss";
 import Button from "../../Components/layouts/LoginComponents/Button";
 
-const SignUp = ({ onClose }) => {
+const SignUp = ({}) => {
   // Nhận prop onClose để đóng form
   const [fullName, setFullName] = useState("");
   const [dob, setDob] = useState("");
@@ -17,23 +17,7 @@ const SignUp = ({ onClose }) => {
 
   const handleSignUp = (e) => {
     e.preventDefault();
-    console.log({ fullName, dob, gender, phone, email, password });
-    // Gửi dữ liệu đăng ký lên server tại đây
   };
-
-  // Xử lý sự kiện click bên ngoài form
-  useEffect(() => {
-    const handleClickOutside = (event) => {
-      if (signUpRef.current && !signUpRef.current.contains(event.target)) {
-        onClose(); // Đóng form khi click bên ngoài
-      }
-    };
-
-    document.addEventListener("mousedown", handleClickOutside);
-    return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
-    };
-  }, [onClose]);
 
   return (
     <div className={styles.overlay}>
