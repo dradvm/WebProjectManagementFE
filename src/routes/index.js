@@ -10,6 +10,7 @@ import AdminDashboard from "../../src/Pages/Admin/AdminDashboard";
 import AdminLayout from "../../src/Components/layouts/AdminLayout/AdminLayout"; // Import layout mới
 import Login from "../Components/Login/login";
 import Signup from "../Components/Login/signUp";
+import AddProject from "../Components/layouts/ProjectComponents/AddProject"
 
 export const publicRoutes = [
   { path: "/", component: Home, layout: DefaultLayout },

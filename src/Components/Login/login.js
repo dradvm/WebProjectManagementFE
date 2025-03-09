@@ -57,6 +57,6 @@ const Login = ({ setIsAuthenticated }) => {
       </div>
     </div>
   );
-};
+}
 
 export default Login;

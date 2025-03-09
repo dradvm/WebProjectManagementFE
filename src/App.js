@@ -26,7 +26,7 @@ function App() {
   const [forms, setForms] = useState([]);
   const [trash, setTrash] = useState([]);
   const [sidebarIndexClicked, setSidebarIndexClicked] = useState(null);
-  const [userRole, setUserRole] = useState("admin"); // Giả lập role, sau này có thể lấy từ API hoặc localStorage
+  const [userRole, setUserRole] = useState(""); // Giả lập role, sau này có thể lấy từ API hoặc localStorage
   // import AdminLayout from "./Components/layouts/AdminLayout"; // Layout riêng cho Admin
   const [isAuthenticated, setIsAuthenticated] = useState(
     !!localStorage.getItem("token")
