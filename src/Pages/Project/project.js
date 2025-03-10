@@ -1,15 +1,22 @@
 import ProjectList from "../../Components/layouts/ProjectComponents/ProjectList";
-import AddProject from "../../Components/layouts/ProjectComponents/AddProject";
+import {
+  BrowserRouter,
+  Route,
+  Routes,
+  Navigate,
+  useNavigate,
+} from "react-router-dom";
 import styles from "./project.module.scss"
-import {Link} from "react-router-dom"
-import { useState } from "react"; 
+import ProjectDetail from "../../Components/layouts/ProjectComponents/ProjectDetail";
 function Project() {
   
 
   return (
-  
-      <ProjectList />
-    
+    <Routes>
+      <Route path="/" element={<ProjectList />} />
+      <Route path="/:id" element={<ProjectDetail />} />
+    </Routes>
+
   );
 }
 

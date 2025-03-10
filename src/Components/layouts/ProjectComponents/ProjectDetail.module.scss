@@ -1,0 +1,118 @@
+.projectDetailContainer {
+    max-width: 900px;
+    margin: 20px auto;
+    padding: 20px;
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+
+    h2 {
+        text-align: center;
+        margin-bottom: 10px;
+    }
+
+    .projectInfo {
+        background: #f9f9f9;
+        padding: 15px;
+        border-radius: 8px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        margin-bottom: 20px;
+
+        .status,
+        .progress {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ced4da;
+            border-radius: 4px;
+            background: #fff;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        textarea{
+            margin-left: -5px;
+        }
+        
+    }
+
+    .fileSection {
+        background: #f1f8fe;
+        padding: 15px;
+        border-radius: 8px;
+        border: 2px dashed #1eb2c5;
+        margin-bottom: 20px;
+
+        h3 {
+            color: #188e9e;
+            margin-bottom: 10px;
+        }
+
+        ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+
+            li {
+                background: #e6f7ff;
+                padding: 8px 12px;
+                border-radius: 4px;
+                margin-bottom: 5px;
+                font-weight: bold;
+                color: #188e9e;
+                border: 1px solid #188e9e;
+            }
+        }
+
+        input[type="file"] {
+            margin-top: 10px;
+            border: 1px solid #1eb2c5;
+            padding: 8px;
+            border-radius: 4px;
+        }
+    }
+
+    .actionButtons {
+        display: flex;
+        gap: 10px;
+        justify-content: flex-end;
+
+        button {
+            padding: 8px 12px;
+            border-radius: 6px;
+            font-size: 14px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: none;
+
+            &:hover {
+                opacity: 0.8;
+            }
+        }
+
+        .edit {
+            background-color: #ffc107;
+            color: #fff;
+
+            &:hover {
+                background-color: #e0a800;
+            }
+        }
+
+        .save{
+            background-color: #11e909;
+            color: #fff;
+
+            &:hover {
+                background-color: #0ebe07;
+            }
+        }
+
+        .delete {
+            background-color: #dc3545;
+            color: #fff;
+
+            &:hover {
+                background-color: #a71d2a;
+            }
+        }
+    }
+}

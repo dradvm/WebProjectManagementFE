@@ -340,18 +340,30 @@
   ],
   "projects": [
     {
-      "id": 1,
+      "id": "1",
       "name": "Dự án A",
       "description": "Mô tả ngắn về dự án A",
       "startDate": "2024-01-10",
-      "endDate": "2024-06-15"
+      "endDate": "2024-06-15",
+      "status": "Không hoàn thành"
     },
     {
-      "id": 2,
+      "id": "2",
       "name": "Dự án B",
       "description": "Mô tả ngắn về dự án B",
       "startDate": "2023-12-05",
-      "endDate": "2024-05-20"
+      "endDate": "2024-05-20",
+      "status": "Không hoàn thành"
+    },
+    {
+      "id": "6f38",
+      "name": "Nguyễn Trương Nhật Anh",
+      "description": "aaa",
+      "startDate": "2025-03-10",
+      "endDate": "2025-03-14",
+      "progress": "20",
+      "status": "Đang thực hiện",
+      "files": []
     }
   ]
 }

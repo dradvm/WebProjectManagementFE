@@ -70,6 +70,7 @@ function App() {
                 const Layout = route.layout === null ? Fragment : route.layout;
 
                 return (
+                  <>
                   <Route
                     key={index}
                     path={route.path}
@@ -81,6 +82,9 @@ function App() {
                       </Layout>
                     }
                   />
+                  
+                  
+                  </>
                 );
               })}
 

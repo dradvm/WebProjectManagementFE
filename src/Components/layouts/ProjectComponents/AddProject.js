@@ -21,18 +21,18 @@ const AddProject = ({ onClose,onAddProject }) => {
   };
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
-    try {
-      const response = await axios.post(
-        "http://localhost:5000/projects",
-        formData
-      );
-      
-      onAddProject(response.data); // Cập nhật danh sách dự án
-      onClose(); 
-    } catch (error) {
-      console.error("Lỗi khi thêm dự án:", error);
-    }
+    e.preventDefault(); // Ngăn trang web tự load lại khi submit
+
+    const newProject = {
+      ...formData,
+      progress: 0, // Mặc định tiến độ là 0 khi thêm mới
+    };
+
+    // Gọi hàm `onAddProject` từ `ProjectList`
+    await onAddProject(newProject);
+
+    // Đóng modal sau khi thêm thành công
+    onClose();
   };
 
   return (

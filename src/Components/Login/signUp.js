@@ -42,7 +42,6 @@ const SignUp = ({ }) => {
 
   return (
     <div className={styles.overlay}>
-      {" "}
       {/* Lớp phủ nền */}
       <div className={styles.loginContainer} ref={signUpRef}>
         <h2>Create Your Account</h2>
@@ -52,24 +51,22 @@ const SignUp = ({ }) => {
             placeholder="Họ và Tên"
             value={fullName}
             onChange={(e) => setFullName(e.target.value)}
+            required
           />
           <InputField
             type="email"
             placeholder="Email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
-          />
-          <InputField
-            type="date"
-            placeholder="Ngày sinh"
-            value={dob}
-            onChange={(e) => setDob(e.target.value)}
+            required
           />
           <InputField
             type="tel"
             placeholder="Số điện thoại"
             value={phone}
             onChange={(e) => setPhone(e.target.value)}
+            pattern="^0\d{9}$"
+            required
           />
           <div className={styles.gendergroup}>
             <label>
@@ -92,23 +89,13 @@ const SignUp = ({ }) => {
               />
               Nữ
             </label>
-            <label>
-              <input
-                type="radio"
-                name="gender"
-                value="Khác"
-                checked={gender === "Khác"}
-                onChange={(e) => setGender(e.target.value)}
-              />
-              Khác
-            </label>
           </div>
-
           <InputField
             type="password"
             placeholder="Mật khẩu"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
+            required
           />
           <div className={styles.ButtonContinue}>
             <Button type="submit" text="Đăng ký" width="300px" />
