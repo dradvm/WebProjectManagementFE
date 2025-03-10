@@ -1,10 +1,12 @@
-import { useState, useRef, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { useState, useRef, useEffect, useContext } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import InputField from "../../Components/layouts/LoginComponents/InputField";
 import styles from "./login.module.scss";
 import Button from "../../Components/layouts/LoginComponents/Button";
+import authService from "../../services/authService";
+import { itemsContext } from "../../App";
 
-const SignUp = ({}) => {
+const SignUp = ({ }) => {
   // Nhận prop onClose để đóng form
   const [fullName, setFullName] = useState("");
   const [dob, setDob] = useState("");
@@ -12,11 +14,30 @@ const SignUp = ({}) => {
   const [phone, setPhone] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const { setIsAuthenticated } = useContext(itemsContext)
+  const navigate = useNavigate();
 
   const signUpRef = useRef(null); // Tham chiếu đến form
 
   const handleSignUp = (e) => {
     e.preventDefault();
+
+    // authService.registerNguoiDung({
+    //   hoTen: fullName,
+    //   laNam: gender === "Nam",
+    //   soDienThoai: phone,
+    //   email: email,
+    //   matKhau: password
+    // })
+    //   .then((res) => {
+    //     console.log(res.data)
+    //     setIsAuthenticated(true)
+    //     navigate("/")
+    //   })
+    //   .catch((err) => {
+    //     console.log(err.response.data)
+    //   })
+
   };
 
   return (

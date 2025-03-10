@@ -4,6 +4,7 @@ import styles from "./login.module.scss";
 import InputField from "../layouts/LoginComponents/InputField";
 import Button from "../layouts/LoginComponents/Button";
 import { Link } from "react-router-dom";
+import authService from "../../services/authService";
 
 const Login = ({ setIsAuthenticated }) => {
   const [email, setEmail] = useState("");
@@ -13,6 +14,29 @@ const Login = ({ setIsAuthenticated }) => {
   const loginRef = useRef(null);
   const handleLogin = (e) => {
     e.preventDefault();
+    console.log({
+      email: email,
+      matKhau: password
+    })
+    // authService.login({
+    //   email: email,
+    //   matKhau: password
+    // })
+    //   .then((res) => {
+    //     setLoginMessage("Login successful! ");
+    //     console.log(setIsAuthenticated)
+    //     setIsAuthenticated(true);
+    //     setTimeout(() => {
+    //       navigate("/");
+    //     }, 1500);
+    //   })
+    //   .catch((err) => {
+    //     console.log(err)
+    //     setLoginMessage(err.message)
+    //   })
+
+
+
     if (email === "test@gmail.com" && password === "123456") {
       localStorage.setItem("token", "fake-jwt-token");
       setLoginMessage("Login successful! ");

@@ -43,6 +43,7 @@ function App() {
         trash,
         setTrash,
         TRASH_API,
+        setIsAuthenticated
       }}
     >
       <GlobalStyles>
@@ -54,11 +55,11 @@ function App() {
                 element={
                   <Login
                     setIsAuthenticated={setIsAuthenticated}
-                    onClose={() => {}}
+                    onClose={() => { }}
                   />
                 }
               />
-              <Route path="/signup" element={<SignUp onClose={() => {}} />} />
+              <Route path="/signup" element={<SignUp onClose={() => { }} />} />
               <Route path="*" element={<Navigate to="/login" replace />} />
             </>
           ) : (

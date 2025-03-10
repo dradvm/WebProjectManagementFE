@@ -18,8 +18,8 @@ export const publicRoutes = [
   { path: "/notification", component: Notification, layout: DefaultLayout },
   { path: "/form", component: Form, layout: DefaultLayout },
   { path: "/trash", component: Trash, layout: DefaultLayout },
-  { path: "/login", component: Login, layout: null }, // Không dùng layout
-  { path: "/signup", component: Signup, layout: null }, // Không dùng layout
+  // { path: "/login", component: Login, layout: null }, // Không dùng layout
+  // { path: "/signup", component: Signup, layout: null }, // Không dùng layout
 ];
 
 // Admin Routes (Thêm mới)
