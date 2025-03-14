@@ -81,7 +81,7 @@ export const adminSidebarItems = [
   {
     id: 0,
     name: "Trang chủ Admin",
-    icon: "faGauge",
+    icon: "faHouse",
     path: "/dashboard",
     component: AdminDashboard,
     layout: DefaultLayout,

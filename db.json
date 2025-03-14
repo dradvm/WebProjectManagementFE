@@ -46,12 +46,12 @@
   "users": [
     {
       "id": "B123456",
-      "fullName": "Đức Đẹp trai",
+      "fullName": "Đức Con",
       "gender": "Nam",
       "phone": "0123456789",
       "email": "Duc@gmail.com",
-      "role": "User",
-      "status": "Hoạt động"
+      "role": "Admin",
+      "status": "Vô hiệu hóa"
     },
     {
       "id": "B000000",
@@ -99,6 +99,16 @@
       "email": "jerry@gmail.com",
       "password": "123321123",
       "role": "Admin",
+      "status": "Hoạt động"
+    },
+    {
+      "id": "B1234",
+      "fullName": "Mèo",
+      "gender": "Nữ",
+      "phone": "0123456789",
+      "email": "meo@gmail.com",
+      "role": "Admin",
+      "password": "meo12345",
       "status": "Hoạt động"
     }
   ],
