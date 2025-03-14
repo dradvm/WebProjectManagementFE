@@ -2,9 +2,9 @@ import { useState } from "react";
 import InputField from "../../layouts/LoginComponents/InputField.js";
 import Button from "../../layouts/LoginComponents/Button.js";
 import axios from "axios";
-import styles from "./AddProject.module.scss" 
+import styles from "./AddProject.module.scss";
 
-const AddProject = ({ onClose,onAddProject }) => {
+const AddProject = ({ onClose, onAddProject }) => {
   const [formData, setFormData] = useState({
     name: "",
     description: "",

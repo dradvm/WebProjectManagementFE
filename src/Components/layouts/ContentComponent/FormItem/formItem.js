@@ -7,20 +7,40 @@ import Menu from "../../../Menu/menu";
 
 const cx = classNames.bind(styles);
 
-function FormItem({ url, name, date, id }) {
+function FormItem({
+  url,
+  name,
+  date,
+  id,
+  onDelete,
+  onResponse,
+  onSettingFrom,
+  onExportForm,
+}) {
   const [isHover, setIsHover] = useState(false);
   const menuRef = useRef(null);
+
   const items = [
-    { name: "Xóa forms", type: "delete" },
-    { name: "Chỉnh sửa", type: "edit" },
+    { name: "Xóa forms", type: "delete", action: () => onDelete(id) },
+    { name: "Chỉnh sửa", type: "edit", action: () => onSettingFrom(id) },
+    {
+      name: "Xem kết quả khảo sát",
+      type: "view",
+      action: () => onResponse(id),
+    },
+    {
+      name: "Xuất kết quả khảo sát",
+      type: "print",
+      action: () => onExportForm(id),
+    },
   ];
+
   const handleClick = (event) => {
     if (menuRef.current && menuRef.current.contains(event.target)) {
       event.stopPropagation();
-      event.preventDefault();
       return;
     }
-    window.location.href = url;
+    window.open(url, "_blank"); // Mở trong tab mới
   };
 
   return (

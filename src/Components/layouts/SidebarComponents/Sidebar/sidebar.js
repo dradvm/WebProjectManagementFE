@@ -1,5 +1,4 @@
 import { sidebarItems, adminSidebarItems } from "../../../../routes";
-import CreateFrom from "../CreateForm/createForm";
 import SidebarItem from "../SidebarItem/sidebarItem";
 import styles from "./sidebar.module.scss";
 import classNames from "classnames/bind";
@@ -24,7 +23,6 @@ function Sidebar() {
 
   return (
     <div className={cx("wrapper")}>
-      <CreateFrom />
       <div className={cx("sidebar-item-wrapper")}>
         {(isAdmin ? adminSidebarItems : sidebarItems).map((item, index) => (
           <div key={index} onClick={() => setActive(index)}>
