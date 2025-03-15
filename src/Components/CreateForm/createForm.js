@@ -12,7 +12,7 @@ const CreateForm = ({ projectId }) => {
   const [showForm, setShowForm] = useState(false);
   const [survey, setSurvey] = useState({
     name: "",
-    link: "",
+    url: "",
     createdAt: new Date().toISOString().slice(0, 10),
     openAt: "",
     closeAt: "",
@@ -29,9 +29,9 @@ const CreateForm = ({ projectId }) => {
     const { name, value } = e.target;
     setSurvey({ ...survey, [name]: value, projectId: projectId });
   };
-
+  console.log(survey);
   const handleSaveSurvey = async () => {
-    if (!survey.name || !survey.link) {
+    if (!survey.name || !survey.url) {
       alert("Vui lòng nhập tên và liên kết khảo sát!");
       return;
     }
@@ -68,9 +68,9 @@ const CreateForm = ({ projectId }) => {
           />
           <InputField
             type="text"
-            name="link"
+            name="url"
             placeholder="Link Google Form"
-            value={survey.link}
+            value={survey.url}
             onChange={handleSurveyChange}
           />
           <InputField

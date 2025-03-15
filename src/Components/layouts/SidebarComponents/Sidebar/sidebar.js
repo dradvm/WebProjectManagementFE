@@ -19,7 +19,7 @@ function Sidebar() {
 
   const { userRole } = sidebarContextData; // Lấy userRole từ context
 
-  const isAdmin = userRole === "admin"; // Kiểm tra quyền admin
+  const isAdmin = userRole === "user"; // Kiểm tra quyền admin
   console.log("isAdmin", isAdmin);
   return (
     <div className={cx("wrapper")}>
