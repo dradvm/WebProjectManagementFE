@@ -191,15 +191,12 @@
       "startDate": "2024-01-10",
       "endDate": "2024-06-15",
       "status": "Không hoàn thành",
-      "files": [
-        {
-          "name": "CBL1.txt",
-          "url": "/uploads/CBL1.txt"
-        },
-        {
-          "name": "data.txt - Copy (2).txt",
-          "url": "/uploads/data.txt - Copy (2).txt"
-        }
+      "files": [],
+      "participants": [
+        "B000000",
+        "B111111",
+        "B201201",
+        "B987890"
       ]
     },
     {
