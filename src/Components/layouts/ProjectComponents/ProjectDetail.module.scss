@@ -5,114 +5,127 @@
     background: #fff;
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-
+  
     h2 {
-        text-align: center;
-        margin-bottom: 10px;
+      text-align: center;
+      margin-bottom: 20px;
+      color: #188e9e;
     }
-
+  
     .projectInfo {
-        background: #f9f9f9;
-        padding: 15px;
-        border-radius: 8px;
-        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-        margin-bottom: 20px;
-
-        .status,
-        .progress {
-            width: 100%;
-            padding: 8px;
-            border: 1px solid #ced4da;
-            border-radius: 4px;
-            background: #fff;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      background: #f9f9f9;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      margin-bottom: 20px;
+      textarea{
+        margin-left: -5px;
+      }
+      .projectName {
+        margin: 5px 0;
+        font-size: 20px;
+        font-weight: bold;
+        color: #188e9e;
+        
+      }
+      
+    }
+  
+    /* Style cho section chung */
+    .sectionContainer {
+      margin-bottom: 20px;
+      border: 1px solid #dee2e6;
+      border-radius: 8px;
+      overflow: hidden;
+        
+      .sectionHeader {
+        background: #e9f5fb;
+        padding: 10px 15px;
+        cursor: pointer;
+        font-weight: bold;
+        color: #188e9e;
+        border-bottom: 1px solid #dee2e6;
+  
+        &:hover {
+          background: #d6eef2;
         }
-        textarea{
-            margin-left: -5px;
+      }
+  
+      .sectionContent {
+        padding: 15px;
+        background: #f8f9fa;
+        display: none;
+        li{
+            list-style: decimal;
+            font-weight: bold;
+            color: #188e9e;
+            margin-left: 10px;
         }
         
+      }
+  
+      &.expanded {
+        .sectionContent {
+          display: block;
+        }
+      }
     }
-
-    .fileSection {
-        background: #f1f8fe;
-        padding: 15px;
-        border-radius: 8px;
-        border: 2px dashed #1eb2c5;
-        margin-bottom: 20px;
-
-        h3 {
-            color: #188e9e;
-            margin-bottom: 10px;
-        }
-
-        ul {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-
-            li {
-                background: #e6f7ff;
-                padding: 8px 12px;
-                border-radius: 4px;
-                margin-bottom: 5px;
-                font-weight: bold;
-                color: #188e9e;
-                border: 1px solid #188e9e;
-            }
-        }
-
-        input[type="file"] {
-            margin-top: 10px;
-            border: 1px solid #1eb2c5;
-            padding: 8px;
-            border-radius: 4px;
-        }
+  
+   
+    .participantsList {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      list-style: none;  
+      li {      
+        font-weight: bold;
+        color: #188e9e;
+      }
     }
-
+  
     .actionButtons {
-        display: flex;
-        gap: 10px;
-        justify-content: flex-end;
-
-        button {
-            padding: 8px 12px;
-            border-radius: 6px;
-            font-size: 14px;
-            font-weight: bold;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            border: none;
-
-            &:hover {
-                opacity: 0.8;
-            }
+      display: flex;
+      gap: 10px;
+      justify-content: flex-end;
+      margin:20px 0px;
+  
+      button {
+        padding: 8px 20px;
+        border: none;
+        border-radius: 6px;
+        cursor: pointer;
+        font-weight: bold;
+        transition: background-color 0.3s;
+  
+        &.save {
+          background-color: #28a745;
+          color: #fff;
+          &:hover {
+            background-color: #218838;
+          }
         }
-
-        .edit {
-            background-color: #ffc107;
-            color: #fff;
-
-            &:hover {
-                background-color: #e0a800;
-            }
+        &.edit {
+          background-color: #ffc107;
+          color: #212529;
+          &:hover {
+            background-color: #e0a800;
+          }
         }
-
-        .save{
-            background-color: #11e909;
-            color: #fff;
-
-            &:hover {
-                background-color: #0ebe07;
-            }
+        &.delete {
+          background-color: #dc3545;
+          color: #fff;
+          &:hover {
+            background-color: #c82333;
+          }
         }
-
-        .delete {
-            background-color: #dc3545;
-            color: #fff;
-
-            &:hover {
-                background-color: #a71d2a;
-            }
+        &.addMember {
+          background-color: #17a2b8;
+          color: #fff;
+          &:hover {
+            background-color: #138496;
+          }
         }
+      }
     }
-}
+  }
+  

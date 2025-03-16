@@ -8,7 +8,6 @@ import { useNavigate } from "react-router-dom";
 function ProjectList() {
   const [projects, setProjects] = useState();
   const [showAddModal, setShowAddModal] = useState(false);
-  const today = new Date();
   const navigate = useNavigate();
 
   const onViewDetail = (project) => {
@@ -154,15 +153,11 @@ function ProjectList() {
       <div className={styles.projectList}>
         {projects &&
           projects.map((project, index) => {
-            const startDate = new Date(project.startDate);
-            const endDate = new Date(project.endDate);
-            const today = new Date();
-
             return (
               <div key={project.id} className={styles.projectCard}>
                 <div className={styles.projectInfo}>
                   <span className={styles.projectIndex}>
-                    {index + 1}. {project.name}
+                  {index + 1}. {project.name} - Chủ dự án: {project.ownerName || "Chưa xác định"}
                   </span>
                   <p className={styles.projectDescription}>
                     {project.description}
