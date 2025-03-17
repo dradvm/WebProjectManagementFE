@@ -23,6 +23,13 @@ const AddProject = ({ onClose, onAddProject }) => {
   const handleSubmit = async (e) => {
     e.preventDefault(); // Ngăn trang web tự load lại khi submit
 
+    const { startDate, endDate } = formData;
+
+    if (startDate && endDate && endDate <= startDate) {
+      alert("Ngày kết thúc phải lớn hơn ngày bắt đầu!");
+      return;
+    }
+
     const newProject = {
       ...formData,
       progress: 0, // Mặc định tiến độ là 0 khi thêm mới

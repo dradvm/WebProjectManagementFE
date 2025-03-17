@@ -30,6 +30,10 @@ const createAxios = (route = "", contentType = "application/json") => {
             return response;
         },
         (err) => {
+            if (err.status === 403) {
+                localStorage.removeItem("token")
+                window.location.href = "/login"
+            }
             return Promise.reject(err);
         }
     );

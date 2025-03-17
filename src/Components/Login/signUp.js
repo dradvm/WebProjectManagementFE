@@ -22,21 +22,21 @@ const SignUp = ({ }) => {
   const handleSignUp = (e) => {
     e.preventDefault();
 
-    // authService.registerNguoiDung({
-    //   hoTen: fullName,
-    //   laNam: gender === "Nam",
-    //   soDienThoai: phone,
-    //   email: email,
-    //   matKhau: password
-    // })
-    //   .then((res) => {
-    //     console.log(res.data)
-    //     setIsAuthenticated(true)
-    //     navigate("/")
-    //   })
-    //   .catch((err) => {
-    //     console.log(err.response.data)
-    //   })
+    authService.registerNguoiDung({
+      hoTen: fullName,
+      laNam: gender === "Nam",
+      soDienThoai: phone,
+      email: email,
+      matKhau: password
+    })
+      .then((res) => {
+        console.log(res.data)
+        setIsAuthenticated(true)
+        navigate("/")
+      })
+      .catch((err) => {
+        console.log(err.response.data)
+      })
 
   };
 

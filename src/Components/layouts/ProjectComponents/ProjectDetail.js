@@ -5,6 +5,7 @@ import { useParams, useNavigate } from "react-router-dom";
 import InputField from "../LoginComponents/InputField.js";
 import CreateForm from "../../CreateForm/createForm.js";
 import FormList from "../FormList/formList.js";
+import duAnService from "../../../services/duAnService.js";
 
 function ProjectDetail() {
   const { id } = useParams();
@@ -22,8 +23,9 @@ function ProjectDetail() {
   ];
 
   useEffect(() => {
-    axios
-      .get(`http://localhost:5000/projects/${id}`)
+    // axios
+    //   .get(`http://localhost:5000/projects/${id}`)
+    duAnService.getDuAn(id)
       .then((res) => {
         setProjects(res.data);
         setEditedProject(res.data);
@@ -36,34 +38,44 @@ function ProjectDetail() {
       .catch((error) => console.error("Lỗi khi lấy dữ liệu tập tin:", error));
   }, [id]);
 
-  const handleDelete = async (id) => {
+  const handleDelete = async () => {
     const confirmDelete = window.confirm(
       "Bạn có chắc chắn muốn xóa dự án này?"
     );
     if (confirmDelete) {
       try {
-        const token = localStorage.getItem("token");
-        if (!token) {
-          alert("Bạn chưa đăng nhập. Vui lòng đăng nhập để xóa dự án.");
-          return;
-        }
+        // const token = localStorage.getItem("token");
+        // if (!token) {
+        //   alert("Bạn chưa đăng nhập. Vui lòng đăng nhập để xóa dự án.");
+        //   return;
+        // }
         // Gửi request DELETE kèm token trong headers
-        const response = await axios.delete(
-          `http://localhost:5000/projects/${id}`,
-          {
-            headers: { Authorization: `Bearer ${token}` },
-          }
-        );
+
+        duAnService.deleteDuAn(id)
+          .then((res) => {
+            alert("Dự án đã được xóa!");
+            navigate("/project")
+          })
+          .catch((err) => {
+            alert("Lỗi khi xóa dự án, vui lòng thử lại.");
+          })
+
+        // const response = await axios.delete(
+        //   `http://localhost:5000/projects/${id}`,
+        //   {
+        //     headers: { Authorization: `Bearer ${token}` },
+        //   }
+        // );
 
         // Xóa thành công
-        if (response.status === 200) {
-          setProjects((prevProjects) =>
-            prevProjects.filter((project) => project.id !== id)
-          );
-          alert("Dự án đã được xóa!");
-        } else {
-          alert("Lỗi khi xóa dự án, vui lòng thử lại.");
-        }
+        // if (response.status === 200) {
+        //   setProjects((prevProjects) =>
+        //     prevProjects.filter((project) => project.id !== id)
+        //   );
+        //   alert("Dự án đã được xóa!");
+        // } else {
+        //   alert("Lỗi khi xóa dự án, vui lòng thử lại.");
+        // }
       } catch (error) {
         alert(`Lỗi server: ${error.response?.data?.message || error.message}`);
       }
@@ -185,22 +197,22 @@ function ProjectDetail() {
           <>
             <>
               <p>
-                <strong>Tên dự án:</strong> {project.name}
+                <strong>Tên dự án:</strong> {project.tenDuAn}
               </p>
               <p>
-                <strong>Mô tả:</strong> {project.description}
+                <strong>Mô tả:</strong> {project.moTa}
               </p>
               <p>
-                <strong>Ngày bắt đầu:</strong> {project.startDate}
+                <strong>Ngày bắt đầu:</strong> {project.ngayBatDau}
               </p>
               <p>
-                <strong>Ngày kết thúc:</strong> {project.endDate}
+                <strong>Ngày kết thúc:</strong> {project.ngayKetThuc}
               </p>
               <p>
-                <strong>Trạng thái:</strong> {project.status}
+                <strong>Trạng thái:</strong> {project.trangThai}
               </p>
               <p>
-                <strong>Tiến độ:</strong> {project.progress || "0"}%
+                <strong>Tiến độ:</strong> {project.tienDoHoanThanh || "0"}%
               </p>
             </>
             <div className={styles.fileSection}>
