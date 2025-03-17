@@ -13,11 +13,11 @@ const Login = ({ setIsAuthenticated }) => {
   const [loginMessage, setLoginMessage] = useState("");
   const loginRef = useRef(null);
   const handleLogin = (e) => {
-    //e.preventDefault();
-    console.log({
-      email: email,
-      matKhau: password
-    })
+    // e.preventDefault();
+    // console.log({
+    //   email: email,
+    //   matKhau: password
+    // })
     // authService.login({
     //   email: email,
     //   matKhau: password
@@ -68,7 +68,7 @@ const Login = ({ setIsAuthenticated }) => {
             onChange={(e) => setPassword(e.target.value)}
           />
           <div className={styles.ButtonContinue}>
-            <Button type="submit" text="Tiếp tục" width="300px" onClick={() => handleLogin()} />
+            <Button type="submit" text="Tiếp tục" width="300px"  />
           </div>
         </form>
 

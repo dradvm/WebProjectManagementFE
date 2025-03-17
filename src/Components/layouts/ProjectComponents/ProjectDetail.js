@@ -102,7 +102,12 @@ function ProjectDetail() {
   
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setEditedProject({ ...editedProject, [name]: value });
+    if (name === "progress") {
+      const progressValue = Math.min(Math.max(Number(value), 0), 100);
+      setEditedProject({ ...editedProject, [name]: progressValue });
+    } else {
+      setEditedProject({ ...editedProject, [name]: value });
+    }
   };
 
   const handleSave = async () => {
@@ -208,8 +213,8 @@ function ProjectDetail() {
           </>
         ) : (
           <>
-            <p>
-              <strong>Tên dự án:</strong> {project.name} (Chủ dự án: {project.owner})
+            <p className={styles.projectName}>
+               {project.name} (Chủ dự án: {project.owner})
             </p>
             <p>
               <strong>Mô tả:</strong> {project.description}

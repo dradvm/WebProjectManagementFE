@@ -190,14 +190,15 @@
       "description": "Mô tả ngắn về dự án A",
       "startDate": "2024-01-10",
       "endDate": "2024-06-15",
-      "status": "Không hoàn thành",
+      "status": "Hoàn thành",
       "files": [],
       "participants": [
         "B000000",
         "B111111",
         "B201201",
         "B987890"
-      ]
+      ],
+      "progress": 100
     },
     {
       "id": "2",
@@ -216,6 +217,17 @@
       "progress": "20",
       "status": "Không hoàn thành",
       "files": []
+    },
+    {
+      "id": "2b12",
+      "name": "Nguyễn Trương Nhật Anh",
+      "description": "aaaa",
+      "startDate": "2025-03-17",
+      "endDate": "2025-03-27",
+      "progress": 0,
+      "ownerId": "",
+      "ownerName": "",
+      "status": "Đang thực hiện"
     }
   ]
 }
