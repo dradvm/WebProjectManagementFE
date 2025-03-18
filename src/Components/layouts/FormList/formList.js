@@ -1,6 +1,7 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import axios from "axios";
 import FormItem from "../ContentComponent/FormItem/formItem";
+import { itemsContext } from "../../../App";
 const XLSX = require("xlsx");
 const { saveAs } = require("file-saver");
 
@@ -8,19 +9,29 @@ function FormList({ projectId }) {
   const [forms, setForms] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-
+  const { deletedForms, setDeletedForms } = useContext(itemsContext);
   const handleDeleteForm = async (formId) => {
     try {
+      // Tìm form trước khi xóa
+      const deletedForm = forms.find((form) => form.id === formId);
+
+      if (!deletedForm) return; // Nếu không tìm thấy form, dừng lại
+
+      // Gửi yêu cầu xóa đến server
       await axios.delete(`http://localhost:5000/items/${formId}`);
+
+      // Lưu form bị xóa vào state
+      setDeletedForms((prevDeletedForms) => [...prevDeletedForms, deletedForm]);
+
+      // Cập nhật danh sách form (loại bỏ form bị xóa)
       setForms((prevForms) => prevForms.filter((form) => form.id !== formId));
     } catch (err) {
-      alert("Lỗi khi xem response: " + err.message);
+      alert("Lỗi khi xóa form: " + err.message);
     }
   };
   const handleResponseForm = async (formId) => {
     try {
       const forms = await axios.get(`http://localhost:5000/items/${formId}`);
-      console.log(forms.data);
       window.open(`${forms.data.url}#responses`, "_blank");
     } catch (err) {
       alert("Lỗi khi xem phản hồi: " + err.message);
@@ -82,7 +93,6 @@ function FormList({ projectId }) {
   const handleSettingForm = async (formId) => {
     try {
       const forms = await axios.get(`http://localhost:5000/items/${formId}`);
-      console.log(forms.data);
       window.open(`${forms.data.url}#settings`, "_blank");
     } catch (err) {
       alert("Lỗi khi sửa form: " + err.message);

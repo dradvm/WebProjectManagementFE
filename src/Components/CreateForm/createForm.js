@@ -29,7 +29,6 @@ const CreateForm = ({ projectId }) => {
     const { name, value } = e.target;
     setSurvey({ ...survey, [name]: value, projectId: projectId });
   };
-  console.log(survey);
   const handleSaveSurvey = async () => {
     if (!survey.name || !survey.url) {
       alert("Vui lòng nhập tên và liên kết khảo sát!");

@@ -9,7 +9,7 @@ function ProjectList() {
   const [projects, setProjects] = useState();
   const [showAddModal, setShowAddModal] = useState(false);
   const navigate = useNavigate();
-
+  console.log("style", styles.projectCard);
   const onViewDetail = (project) => {
     navigate(`/project/${project.id}`);
   };
@@ -157,7 +157,8 @@ function ProjectList() {
               <div key={project.id} className={styles.projectCard}>
                 <div className={styles.projectInfo}>
                   <span className={styles.projectIndex}>
-                  {index + 1}. {project.name} - Chủ dự án: {project.ownerName || "Chưa xác định"}
+                    {index + 1}. {project.name} - Chủ dự án:{" "}
+                    {project.ownerName || "Chưa xác định"}
                   </span>
                   <p className={styles.projectDescription}>
                     {project.description}

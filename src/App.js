@@ -21,10 +21,11 @@ export const itemsContext = createContext();
 const cx = classNames.bind(styles);
 
 function App() {
-  const FORMS_API = "http://localhost:3000/items";
-  const TRASH_API = "http://localhost:3000/trash";
+  const FORMS_API = "http://localhost:5000/items";
+  const PROJECTS_API = "http://localhost:5000/projects";
   const [forms, setForms] = useState([]);
   const [trash, setTrash] = useState([]);
+  const [deletedForms, setDeletedForms] = useState([]);
   const [sidebarIndexClicked, setSidebarIndexClicked] = useState(null);
   const [userRole, setUserRole] = useState("admin"); // Giả lập role, sau này có thể lấy từ API hoặc localStorage
   // import AdminLayout from "./Components/layouts/AdminLayout"; // Layout riêng cho Admin
@@ -42,8 +43,10 @@ function App() {
         setForms,
         trash,
         setTrash,
-        TRASH_API,
-        setIsAuthenticated
+        setIsAuthenticated,
+        deletedForms,
+        setDeletedForms,
+        PROJECTS_API,
       }}
     >
       <GlobalStyles>
@@ -55,11 +58,11 @@ function App() {
                 element={
                   <Login
                     setIsAuthenticated={setIsAuthenticated}
-                    onClose={() => { }}
+                    onClose={() => {}}
                   />
                 }
               />
-              <Route path="/signup" element={<SignUp onClose={() => { }} />} />
+              <Route path="/signup" element={<SignUp onClose={() => {}} />} />
               <Route path="*" element={<Navigate to="/login" replace />} />
             </>
           ) : (
@@ -71,19 +74,17 @@ function App() {
 
                 return (
                   <>
-                  <Route
-                    key={index}
-                    path={route.path}
-                    element={
-                      <Layout>
-                        <Content>
-                          <Page />
-                        </Content>
-                      </Layout>
-                    }
-                  />
-                  
-                  
+                    <Route
+                      key={index}
+                      path={route.path}
+                      element={
+                        <Layout>
+                          <Content>
+                            <Page />
+                          </Content>
+                        </Layout>
+                      }
+                    />
                   </>
                 );
               })}
