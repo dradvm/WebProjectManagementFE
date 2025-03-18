@@ -3,14 +3,13 @@ import styles from "./ProjectDetail.module.scss";
 import axios from "axios";
 import { useParams, useNavigate } from "react-router-dom";
 import InputField from "../LoginComponents/InputField.js";
-import CreateForm from "../../CreateForm/createForm.js";
 import FormList from "../FormList/formList.js";
 import AddParticipants from "./AddParticipants.js";
 
 function ProjectDetail() {
   const { id } = useParams();
   const navigate = useNavigate();
-  
+
   const [project, setProject] = useState(null);
   const [fileList, setFileList] = useState([]);
   const [isEditing, setIsEditing] = useState(false);
@@ -20,7 +19,7 @@ function ProjectDetail() {
   // state này sẽ lưu thông tin chi tiết của từng người dùng
   const [participantDetails, setParticipantDetails] = useState([]);
   const [showAddParticipants, setShowAddParticipants] = useState(false);
-  
+
   // State cho việc mở/đóng các section
   const [isParticipantsExpanded, setIsParticipantsExpanded] = useState(false);
   const [isFilesExpanded, setIsFilesExpanded] = useState(false);
@@ -99,7 +98,7 @@ function ProjectDetail() {
   };
 
   const handleEdit = () => setIsEditing(true);
-  
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     if (name === "progress") {
@@ -141,7 +140,7 @@ function ProjectDetail() {
   return (
     <div className={styles.projectDetailContainer}>
       <h2>Chi tiết Dự án</h2>
-      
+
       <div className={styles.projectInfo}>
         {isEditing ? (
           <>
@@ -214,7 +213,7 @@ function ProjectDetail() {
         ) : (
           <>
             <p className={styles.projectName}>
-               {project.name} (Chủ dự án: {project.owner})
+              {project.name} (Chủ dự án: {project.owner})
             </p>
             <p>
               <strong>Mô tả:</strong> {project.description}
@@ -242,7 +241,6 @@ function ProjectDetail() {
           </button>
         ) : (
           <>
-            <CreateForm projectId={id} />
             <button
               className={styles.addMember}
               onClick={() => setShowAddParticipants(true)}
@@ -337,7 +335,7 @@ function ProjectDetail() {
           Phiếu khảo sát
         </div>
         <div className={styles.sectionContent}>
-          <FormList projectId={id} />
+          <FormList maDuAn={id} />
         </div>
       </div>
 
@@ -350,7 +348,7 @@ function ProjectDetail() {
         />
       )}
 
-      
+
     </div>
   );
 }

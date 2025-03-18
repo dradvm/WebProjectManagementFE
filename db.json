@@ -185,9 +185,9 @@
   ],
   "projects": [
     {
-      "id": "1",
-      "name": "Dự án A",
-      "description": "Mô tả ngắn về dự án A",
+      "id": "DA001",
+      "name": "Dự án X",
+      "description": "Mô tả ngắn về dự án XX",
       "startDate": "2024-01-10",
       "endDate": "2024-06-15",
       "status": "Hoàn thành",
@@ -201,8 +201,8 @@
       "progress": 100
     },
     {
-      "id": "2",
-      "name": "Dự án B",
+      "id": "DA002",
+      "name": "Dự án Y",
       "description": "Mô tả ngắn về dự án B",
       "startDate": "2023-12-05",
       "endDate": "2024-05-20",

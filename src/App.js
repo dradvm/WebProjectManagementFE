@@ -71,19 +71,19 @@ function App() {
 
                 return (
                   <>
-                  <Route
-                    key={index}
-                    path={route.path}
-                    element={
-                      <Layout>
-                        <Content>
-                          <Page />
-                        </Content>
-                      </Layout>
-                    }
-                  />
-                  
-                  
+                    <Route
+                      key={index}
+                      path={route.path}
+                      element={
+                        <Layout>
+                          <Content>
+                            <Page />
+                          </Content>
+                        </Layout>
+                      }
+                    />
+
+
                   </>
                 );
               })}
