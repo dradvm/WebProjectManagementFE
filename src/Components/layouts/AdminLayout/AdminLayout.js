@@ -10,7 +10,6 @@ function AdminLayout({ children }) {
     <div className={cx("admin-layout")}>
       <Header />
       <div className={cx("main")}>
-        <Sidebar />
         <div className={cx("content")}>{children}</div>
       </div>
     </div>
