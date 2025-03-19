@@ -3,7 +3,7 @@ import axios from "axios";
 const createAxios = (route = "", contentType = "application/json") => {
     const instance = axios.create({
         baseURL: `http://localhost:8080/api${route}`,
-        timeout: 10000,
+        timeout: 30000,
         headers: {
             "Content-Type": contentType,
         },
@@ -23,7 +23,6 @@ const createAxios = (route = "", contentType = "application/json") => {
 
     instance.interceptors.response.use(
         (response) => {
-            console.log(response)
             if (response.data.token && response.data.token !== "null") {
                 localStorage.setItem("token", response.data.token);
             }

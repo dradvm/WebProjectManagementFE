@@ -1,9 +1,19 @@
 import { useState, useEffect } from "react";
 import { Table, Button, Modal, Form, Input, Select } from "antd";
-import axios from "axios";
+import createAxios from "../../utils/axios";
 import styles from "./ManageUsers.module.scss";
+import { notification } from "antd";
 
-const API_URL = "http://localhost:5000/users";
+const axios = await createAxios();
+const API_URL = "/users";
+
+const openNotification = (type, message, description) => {
+  notification[type]({
+    message,
+    description,
+    placement: "topRight",
+  });
+};
 
 const ManageUsers = () => {
   const [users, setUsers] = useState([]);
@@ -20,20 +30,29 @@ const ManageUsers = () => {
     setLoading(true);
     try {
       const response = await axios.get(API_URL);
+
       setUsers(response.data);
+      openNotification("success", "Tải dữ liệu thành công", "Danh sách người dùng đã được tải.");
     } catch (error) {
+      console.log("axios", axios);
       console.error("Lỗi tải dữ liệu:", error);
+      openNotification("error", "Không thể tải dữ liệu", "Kiểm tra lại kết nối hoặc API.");
     }
+
     setLoading(false);
   };
 
   const handleAddOrUpdateUser = async (values) => {
+
     try {
       if (editingUser) {
-        await axios.put(`${API_URL}/${editingUser.id}`, values);
+        await axios.put(`${API_URL}/${editingUser.maNguoiDung}`, values);
+        openNotification("success", "Thành công", "Người dùng đã được cập nhật.");
+
       } else {
-        const newUser = { ...values, status: "Hoạt động" };
+        const newUser = { ...values, active: true }; // Báo cáo mặc định active nếu tạo người mới
         await axios.post(API_URL, newUser);
+        openNotification("success", "Thành công", "Người dùng mới đã được thêm.");
       }
       setIsModalOpen(false);
       form.resetFields();
@@ -41,39 +60,57 @@ const ManageUsers = () => {
       loadUsers();
     } catch (error) {
       console.error("Lỗi xử lý người dùng:", error);
+      openNotification("error", "Lỗi", "Không thể xử lý yêu cầu của bạn.");
     }
+
   };
 
   const handleEdit = (user) => {
+    const formattedUser = {
+      ...user,
+      gender: user.laNam ? "Nam" : "Nữ", // Đổi thành giá trị "Nam"/"Nữ"
+    };
     setEditingUser(user);
     setIsModalOpen(true);
-    form.setFieldsValue(user);
+    form.setFieldsValue(formattedUser);
   };
 
-  const handleToggleStatus = async (id, currentStatus) => {
-    const newStatus = currentStatus === "Hoạt động" ? "Vô hiệu hóa" : "Hoạt động";
+  const handleToggleStatus = async (maNguoiDung, currentStatus) => {
+    const newStatus = !currentStatus;  // Đảo ngược trạng thái true -> false và ngược lại
     try {
-      await axios.patch(`${API_URL}/${id}`, { status: newStatus });
+      await axios.patch(`${API_URL}/${maNguoiDung}/active/${newStatus}`);
       loadUsers();
+      openNotification("success", "Thành công", "Cập nhật trạng thái thành công.");
     } catch (error) {
       console.error("Lỗi cập nhật trạng thái:", error);
     }
   };
 
+
   const columns = [
-    { title: "Mã", dataIndex: "id", key: "id" },
-    { title: "Họ và Tên", dataIndex: "fullName", key: "fullName" },
-    { title: "Giới tính", dataIndex: "gender", key: "gender" },
-    { title: "Số điện thoại", dataIndex: "phone", key: "phone" },
+    { title: "Mã", dataIndex: "maNguoiDung", key: "maNguoiDung" },
+    { title: "Họ và Tên", dataIndex: "hoTen", key: "hoTen" },
+    {
+      title: "Giới tính",
+      dataIndex: "laNam",
+      key: "laNam",
+      render: (laNam) => (laNam ? "Nam" : "Nữ"),
+    },
+    { title: "Số điện thoại", dataIndex: "soDienThoai", key: "soDienThoai" },
     { title: "Email", dataIndex: "email", key: "email" },
-    { title: "Quyền", dataIndex: "role", key: "role" },
+    {
+      title: "Quyền",
+      dataIndex: "maQuyen",
+      key: "maQuyen",
+      render: (maQuyen) => maQuyen?.tenQuyen || "Chưa xác định"
+    },
     {
       title: "Trạng thái",
-      dataIndex: "status",
-      key: "status",
-      render: (status) => (
-        <span className={status === "Vô hiệu hóa" ? styles["status-disabled"] : styles["status-active"]}>
-          {status}
+      dataIndex: "active",
+      key: "active",
+      render: (active) => (
+        <span className={active ? styles["status-active"] : styles["status-disabled"]}>
+          {active ? "Hoạt động" : "Vô hiệu hóa"}
         </span>
       ),
     },
@@ -86,11 +123,12 @@ const ManageUsers = () => {
             Chỉnh sửa
           </Button>
           <Button
-            className={record.status === "Hoạt động" ? styles["disable-button"] : styles["activate-button"]}
-            onClick={() => handleToggleStatus(record.id, record.status)}
+            className={record.active ? styles["disable-button"] : styles["activate-button"]}
+            onClick={() => handleToggleStatus(record.maNguoiDung, record.active)}
           >
-            {record.status === "Hoạt động" ? "Vô hiệu hóa" : "Kích hoạt"}
+            {record.active ? "Vô hiệu hóa" : "Kích hoạt"}
           </Button>
+
         </>
       ),
     },
@@ -103,7 +141,8 @@ const ManageUsers = () => {
           Thêm người dùng
         </Button>
       </div>
-      <Table dataSource={users} columns={columns} loading={loading} rowKey="id" className={styles["custom-table"]} />
+      <Table dataSource={users} columns={columns} loading={loading} rowKey="maNguoiDung" className={styles["custom-table"]} pagination={{ pageSize: 10 }}
+      />
 
       {/* Modal Thêm/Sửa Người Dùng */}
       <Modal
@@ -118,19 +157,19 @@ const ManageUsers = () => {
         onOk={() => form.submit()}
       >
         <Form form={form} layout="vertical" className={styles["modal-form"]} onFinish={handleAddOrUpdateUser}>
-          <Form.Item name="id" label="Mã người dùng" rules={[{ required: true, message: "Vui lòng nhập mã người dùng!" }]}>
+          <Form.Item name="maNguoiDung" label="Mã người dùng" rules={[{ required: true, message: "Vui lòng nhập mã người dùng!" }]}>
             <Input disabled={!!editingUser} />
           </Form.Item>
-          <Form.Item name="fullName" label="Họ và Tên" rules={[{ required: true, message: "Vui lòng nhập họ và tên!" }]}>
+          <Form.Item name="hoTen" label="Họ và Tên" rules={[{ required: true, message: "Vui lòng nhập họ và tên!" }]}>
             <Input />
           </Form.Item>
-          <Form.Item name="gender" label="Giới tính" rules={[{ required: true }]}>
+          <Form.Item name="laNam" label="Giới tính" rules={[{ required: true }]}>
             <Select>
-              <Select.Option value="Nam">Nam</Select.Option>
-              <Select.Option value="Nữ">Nữ</Select.Option>
+              <Select.Option value="true">Nam</Select.Option>
+              <Select.Option value="false">Nữ</Select.Option>
             </Select>
           </Form.Item>
-          <Form.Item name="phone" label="Số điện thoại" rules={[{ required: true, message: "Vui lòng nhập số điện thoại!" }]}>
+          <Form.Item name="soDienThoai" label="Số điện thoại" rules={[{ required: true, message: "Vui lòng nhập số điện thoại!" }]}>
             <Input />
           </Form.Item>
           <Form.Item
@@ -141,14 +180,14 @@ const ManageUsers = () => {
             <Input disabled={!!editingUser} />
           </Form.Item>
           {!editingUser && (
-            <Form.Item name="password" label="Mật khẩu" rules={[{ required: true, message: "Vui lòng nhập mật khẩu!" }]}>
+            <Form.Item name="matKhau" label="Mật khẩu" rules={[{ required: true, message: "Vui lòng nhập mật khẩu!" }]}>
               <Input.Password />
             </Form.Item>
           )}
-          <Form.Item name="role" label="Quyền" rules={[{ required: true }]}>
+          <Form.Item name="maQuyen" label="Quyền" rules={[{ required: true }]}>
             <Select>
-              <Select.Option value="Admin">Admin</Select.Option>
-              <Select.Option value="User">User</Select.Option>
+              <Select.Option value="Q2">Quản trị viên</Select.Option>
+              <Select.Option value="Q1">Người dùng</Select.Option>
             </Select>
           </Form.Item>
         </Form>

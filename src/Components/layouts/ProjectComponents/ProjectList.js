@@ -9,11 +9,10 @@ import duAnService from "../../../services/duAnService";
 function ProjectList() {
   const [projects, setProjects] = useState();
   const [showAddModal, setShowAddModal] = useState(false);
-  const today = new Date();
   const navigate = useNavigate();
 
   const onViewDetail = (project) => {
-    navigate(`/project/${project.maDuAn}`);
+    navigate(`/project/${project.duan.maDuAn}`);
   };
 
   const handleDelete = async (id) => {
@@ -183,43 +182,39 @@ function ProjectList() {
       <div className={styles.projectList}>
         {projects &&
           projects.map((project, index) => {
-            const startDate = new Date(project.startDate);
-            const endDate = new Date(project.endDate);
-            const today = new Date();
-
             return (
               <div key={index} className={styles.projectCard}>
                 <div className={styles.projectInfo}>
                   <span className={styles.projectIndex}>
-                    {index + 1}. {project.tenDuAn}
+                    {index + 1}. {project.duan.tenDuAn} - Chủ dự án: {project.owner || "Chưa xác định"}
                   </span>
                   <p className={styles.projectDescription}>
-                    {project.moTa}
+                    {project.duan.moTa}
                   </p>
                   <p>
-                    <strong>Ngày bắt đầu:</strong> {project.ngayBatDau}
+                    <strong>Ngày bắt đầu:</strong> {project.duan.ngayBatDau}
                   </p>
                   <p>
-                    <strong>Ngày kết thúc:</strong> {project.ngayKetThuc}
+                    <strong>Ngày kết thúc:</strong> {project.duan.ngayKetThuc}
                   </p>
                   <p>
-                    <strong>Trạng thái:</strong> {project.trangThai}
+                    <strong>Trạng thái:</strong> {project.duan.trangThai}
                   </p>
                   <div className={styles.progressBar}>
                     <div
                       className={styles.progress}
                       style={{
-                        width: `${project.tienDoHoanThanh}%`,
+                        width: `${project.duan.tienDoHoanThanh}%`,
                         backgroundColor:
-                          project.status === "Chưa bắt đầu"
+                          project.duan.trangThai === "Chưa bắt đầu"
                             ? "gray"
-                            : project.status === "Đang thực hiện" ||
-                              project.status === "Hoàn thành"
+                            : project.duan.trangThai === "Đang thực hiện" ||
+                              project.duan.trangThai === "Hoàn thành"
                               ? "green"
                               : "red",
                       }}
                     >
-                      {project.tienDoHoanThanh}%
+                      {project.duan.tienDoHoanThanh}%
                     </div>
                   </div>
                 </div>
@@ -232,12 +227,12 @@ function ProjectList() {
                     >
                       Xem chi tiết
                     </button>
-                    <button
+                    {/* <button
                       className={styles.delete}
-                      onClick={() => handleDelete(project.maDuAn)}
+                      onClick={() => handleDelete(project.duan.maDuAn)}
                     >
                       Xóa
-                    </button>
+                    </button> */}
                   </div>
                 </div>
               </div>

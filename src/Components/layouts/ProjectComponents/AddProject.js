@@ -21,7 +21,7 @@ const AddProject = ({ onClose, onAddProject }) => {
   };
 
   const handleSubmit = async (e) => {
-    e.preventDefault(); // Ngăn trang web tự load lại khi submit
+    e.preventDefault();
 
     const { startDate, endDate } = formData;
 
@@ -30,15 +30,18 @@ const AddProject = ({ onClose, onAddProject }) => {
       return;
     }
 
+    const user = JSON.parse(localStorage.getItem("user"));
+
     const newProject = {
       ...formData,
-      progress: 0, // Mặc định tiến độ là 0 khi thêm mới
+      progress: 0,
+      ownerId: user ? user.id : "",       // ID của người tạo dự án
+      ownerName: user ? user.fullName : "", // Tên của người tạo dự án
     };
+
 
     // Gọi hàm `onAddProject` từ `ProjectList`
     await onAddProject(newProject);
-
-    // Đóng modal sau khi thêm thành công
     onClose();
   };
 
@@ -55,7 +58,7 @@ const AddProject = ({ onClose, onAddProject }) => {
             type="text"
             placeholder="Tên dự án"
             name="name"
-            value={formData.nameame}
+            value={formData.name}
             onChange={handleChange}
             required
           />
