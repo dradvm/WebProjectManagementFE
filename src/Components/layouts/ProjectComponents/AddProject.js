@@ -21,13 +21,20 @@ const AddProject = ({ onClose, onAddProject }) => {
   };
 
   const handleSubmit = async (e) => {
-    e.preventDefault(); 
+    e.preventDefault();
+
+    const { startDate, endDate } = formData;
+
+    if (startDate && endDate && endDate <= startDate) {
+      alert("Ngày kết thúc phải lớn hơn ngày bắt đầu!");
+      return;
+    }
 
     const user = JSON.parse(localStorage.getItem("user"));
-    
+
     const newProject = {
       ...formData,
-      progress: 0, 
+      progress: 0,
       ownerId: user ? user.id : "",       // ID của người tạo dự án
       ownerName: user ? user.fullName : "", // Tên của người tạo dự án
     };

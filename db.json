@@ -163,6 +163,19 @@
       "description": "Mô tả ngắn về dự án XX",
       "startDate": "2024-01-10",
       "endDate": "2024-06-15",
+<<<<<<< HEAD
+      "status": "Không hoàn thành",
+      "files": [
+        {
+          "name": "ipxsmax64gb.jpg",
+          "url": "/uploads/ipxsmax64gb.jpg"
+        },
+        {
+          "name": "ipxsmax64gb.jpg",
+          "url": "/uploads/ipxsmax64gb.jpg"
+        }
+      ]
+=======
       "status": "Hoàn thành",
       "files": [],
       "participants": [
@@ -172,6 +185,7 @@
         "B987890"
       ],
       "progress": 100
+>>>>>>> 1ab7ca6dae8d9ce9ee80248f291aeaeaa7bd3cad
     },
     {
       "id": "DA002",
