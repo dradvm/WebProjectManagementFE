@@ -45,7 +45,14 @@ const FormList = ({ maDuAn }) => {
       setLoading(false);
     }
   };
-
+  const handleUpdate = (updatedForm) => {
+    // Cập nhật state với form đã được cập nhật
+    setForms(prevForms =>
+      prevForms.map(form =>
+        form.maPhieuKhaoSat === updatedForm.maPhieuKhaoSat ? updatedForm : form
+      )
+    );
+  };
   const handleDelete = async (maPhieuKhaoSat) => {
     try {
       await phieuKhaoSatService.delete(maPhieuKhaoSat);
@@ -55,6 +62,7 @@ const FormList = ({ maDuAn }) => {
       message.error('Lỗi khi xóa phiếu khảo sát');
     }
   };
+
 
   const showModal = () => {
     setIsModalOpen(true);
@@ -110,6 +118,7 @@ const FormList = ({ maDuAn }) => {
                 form={form}
                 onDelete={handleDelete}
                 onRefresh={loadForms}
+                onUpdate={handleUpdate}
               />
             )}
           />

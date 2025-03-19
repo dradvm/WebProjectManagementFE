@@ -1,9 +1,9 @@
-// import axios from '../utils/axios';
+import createAxios from "../utils/axios";
+const axios = await createAxios();
+const PHIEU_KHAO_SAT_API_URL = "/phieu-khao-sat";
 
-// const PHIEU_KHAO_SAT_API_URL = '/phieu-khao-sat';
-
-import axios from 'axios';
-const PHIEU_KHAO_SAT_API_URL = 'http://localhost:8080/api/phieu-khao-sat';
+// import axios from 'axios';
+// const PHIEU_KHAO_SAT_API_URL = 'http://localhost:8080/api/phieu-khao-sat';
 
 const phieuKhaoSatService = {
     // Lấy danh sách phiếu khảo sát theo dự án
@@ -66,7 +66,7 @@ const phieuKhaoSatService = {
     // Cập nhật phiếu khảo sát
     update: async (maPhieuKhaoSat, phieuKhaoSat) => {
         try {
-            const response = await axios.put(`${PHIEU_KHAO_SAT_API_URL}/${maPhieuKhaoSat}`, phieuKhaoSat);
+            const response = await axios.patch(`${PHIEU_KHAO_SAT_API_URL}/${maPhieuKhaoSat}`, phieuKhaoSat);
             return response.data;
         } catch (error) {
             console.error('Lỗi khi cập nhật phiếu khảo sát:', error);

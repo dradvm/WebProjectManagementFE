@@ -15,21 +15,10 @@ const FormLinks = ({ lienKet, lienKetTraLoi }) => {
         <Space>
             <Tooltip title="Mở liên kết để trả lời khảo sát" placement="top">
                 <Button
-                    type="primary"
                     icon={<LinkOutlined />}
                     onClick={() => handleOpenLink(`${lienKet}/viewform`)}
                 >
                     Trả lời khảo sát
-                </Button>
-            </Tooltip>
-
-            <Tooltip title="Chỉnh sửa nội dung form" placement="top">
-                <Button
-                    type="primary"
-                    icon={<EditOutlined />}
-                    onClick={() => handleOpenLink(`${lienKet}/edit`)}
-                >
-                    Chỉnh sửa
                 </Button>
             </Tooltip>
 

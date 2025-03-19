@@ -5,12 +5,12 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 
-// import createAxios from "../../utils/axios";
-// const axios = await createAxios();
-// const API_URL = "/users";
+import createAxios from "../../utils/axios";
+const axios = await createAxios();
+const API_URL = "/users";
 
-import axios from "axios";
-const API_URL = "http://localhost:8080/api/users";
+// import axios from "axios";
+// const API_URL = "http://localhost:8080/api/users";
 
 const openNotification = (type, message, description) => {
   const content = `${message}: ${description}`;
