@@ -1,95 +1,124 @@
-import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
-import axios from "axios";
-import InputField from "../layouts/LoginComponents/InputField";
-import styles from "./createForm.module.scss";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faClose } from "@fortawesome/free-solid-svg-icons";
-import classNames from "classnames/bind";
-const cx = classNames.bind(styles);
-const CreateForm = ({ projectId }) => {
-  const navigate = useNavigate();
-  const [showForm, setShowForm] = useState(false);
-  const [survey, setSurvey] = useState({
-    name: "",
-    url: "",
-    createdAt: new Date().toISOString().slice(0, 10),
-    openAt: "",
-    closeAt: "",
-    projectId: "",
-  });
+import React from 'react';
+import { Form, Input, DatePicker, Button, message, Modal, Row, Col } from 'antd';
+import dayjs from 'dayjs';
 
-  const handleOpenGoogleForm = () => {
-    setShowForm(true);
+const CreateForm = ({ open, onCancel, onSuccess, maDuAn, phieuKhaoSatService }) => {
+  const [form] = Form.useForm();
 
-    window.open("https://docs.google.com/forms/u/0/", "_blank"); // Sau đó mở Google Form
-  };
-
-  const handleSurveyChange = (e) => {
-    const { name, value } = e.target;
-    setSurvey({ ...survey, [name]: value, projectId: projectId });
-  };
-  const handleSaveSurvey = async () => {
-    if (!survey.name || !survey.url) {
-      alert("Vui lòng nhập tên và liên kết khảo sát!");
-      return;
-    }
-
+  const onFinish = async (values) => {
     try {
-      await axios.post("http://localhost:5000/items", survey);
-      alert("Lưu khảo sát thành công!");
-      window.location.reload(); // Load lại trang sau khi nhấn OK
+      // Validate thời gian
+      if (values.ngayGioMo && values.ngayGioDong) {
+        if (dayjs(values.ngayGioMo).isAfter(values.ngayGioDong)) {
+          message.error('Thời gian mở phải trước thời gian đóng');
+          return;
+        }
+      }
+
+      const phieuKhaoSat = {
+        ...values,
+        maDuAn: { maDuAn },
+        ngayGioTao: dayjs().format(),
+        ngayGioMo: values.ngayGioMo?.format(),
+        ngayGioDong: values.ngayGioDong?.format()
+      };
+
+      await phieuKhaoSatService.create(phieuKhaoSat);
+      message.success('Tạo phiếu khảo sát thành công');
+      form.resetFields();
+      onSuccess();
     } catch (error) {
-      alert("Lỗi khi lưu khảo sát: " + error.message);
+      message.error('Lỗi khi tạo phiếu khảo sát');
     }
+  };
+
+  const handleCancel = () => {
+    form.resetFields();
+    onCancel();
   };
 
   return (
-    <div className={styles.createFormContainer}>
-      <button className={styles.createButton} onClick={handleOpenGoogleForm}>
-        Tạo Khảo Sát
-      </button>
+    <Modal
+      title="Tạo phiếu khảo sát mới"
+      open={open}
+      onCancel={handleCancel}
+      footer={null}
+      width={700}
+      destroyOnClose
+    >
+      <Form
+        form={form}
+        layout="vertical"
+        onFinish={onFinish}
+        initialValues={{
+          ngayGioMo: dayjs(),
+          ngayGioDong: dayjs().add(7, 'day')
+        }}
+      >
+        <Form.Item
+          name="tenPhieuKhaoSat"
+          label="Tên phiếu khảo sát"
+          rules={[
+            { required: true, message: 'Vui lòng nhập tên phiếu khảo sát' },
+            { max: 255, message: 'Tên phiếu khảo sát không được vượt quá 255 ký tự' }
+          ]}
+        >
+          <Input
+            placeholder="Nhập tên phiếu khảo sát"
+            maxLength={255}
+            showCount
+          />
+        </Form.Item>
 
-      {showForm && (
-        <div className={styles.formContainer}>
-          <div className={cx("form-close")} onClick={() => setShowForm(false)}>
-            <FontAwesomeIcon icon={faClose} />
-          </div>
-          <div className={cx("form-header")}>
-            <h2>Nhập thông tin khảo sát</h2>
-          </div>
-          <InputField
-            type="text"
-            name="name"
-            placeholder="Tên khảo sát"
-            value={survey.name}
-            onChange={handleSurveyChange}
-          />
-          <InputField
-            type="text"
-            name="url"
-            placeholder="Link Google Form"
-            value={survey.url}
-            onChange={handleSurveyChange}
-          />
-          <InputField
-            type="date"
-            name="openAt"
-            value={survey.openAt}
-            onChange={handleSurveyChange}
-          />
-          <InputField
-            type="date"
-            name="closeAt"
-            value={survey.closeAt}
-            onChange={handleSurveyChange}
-          />
-          <button className={styles.saveButton} onClick={handleSaveSurvey}>
-            Lưu khảo sát
-          </button>
-        </div>
-      )}
-    </div>
+        <Row gutter={16}>
+          <Col span={12}>
+            <Form.Item
+              name="ngayGioMo"
+              label="Thời gian mở"
+              rules={[{ required: true, message: 'Vui lòng chọn thời gian mở' }]}
+            >
+              <DatePicker
+                showTime
+                format="DD/MM/YYYY HH:mm"
+                style={{ width: '100%' }}
+                placeholder="Chọn thời gian mở"
+                disabledDate={(current) => current && current < dayjs().startOf('day')}
+              />
+            </Form.Item>
+          </Col>
+          <Col span={12}>
+            <Form.Item
+              name="ngayGioDong"
+              label="Thời gian đóng"
+              rules={[{ required: true, message: 'Vui lòng chọn thời gian đóng' }]}
+            >
+              <DatePicker
+                showTime
+                format="DD/MM/YYYY HH:mm"
+                style={{ width: '100%' }}
+                placeholder="Chọn thời gian đóng"
+                disabledDate={(current) => {
+                  const startDate = form.getFieldValue('ngayGioMo');
+                  return current && (
+                    current < dayjs().startOf('day') ||
+                    (startDate && current < dayjs(startDate))
+                  );
+                }}
+              />
+            </Form.Item>
+          </Col>
+        </Row>
+
+        <Form.Item style={{ marginBottom: 0, textAlign: 'right' }}>
+          <Button onClick={handleCancel} style={{ marginRight: 8 }}>
+            Hủy
+          </Button>
+          <Button type="primary" htmlType="submit">
+            Tạo phiếu khảo sát
+          </Button>
+        </Form.Item>
+      </Form>
+    </Modal>
   );
 };
 

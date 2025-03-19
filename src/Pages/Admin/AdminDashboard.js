@@ -1,19 +1,29 @@
 import { useState, useEffect } from "react";
 import { Table, Button, Modal, Form, Input, Select } from "antd";
-import createAxios from "../../utils/axios";
 import styles from "./ManageUsers.module.scss";
-import { notification } from "antd";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
-const axios = await createAxios();
-const API_URL = "/users";
+
+// import createAxios from "../../utils/axios";
+// const axios = await createAxios();
+// const API_URL = "/users";
+
+import axios from "axios";
+const API_URL = "http://localhost:8080/api/users";
 
 const openNotification = (type, message, description) => {
-  notification[type]({
-    message,
-    description,
-    placement: "topRight",
-  });
+  const content = `${message}: ${description}`;
+  if (type === "success") {
+    toast.success(content);
+  } else if (type === "error") {
+    toast.error(content);
+  } else {
+    toast.info(content);
+  }
 };
+
+
 
 const ManageUsers = () => {
   const [users, setUsers] = useState([]);
@@ -32,11 +42,9 @@ const ManageUsers = () => {
       const response = await axios.get(API_URL);
 
       setUsers(response.data);
-      openNotification("success", "Tải dữ liệu thành công", "Danh sách người dùng đã được tải.");
     } catch (error) {
-      console.log("axios", axios);
       console.error("Lỗi tải dữ liệu:", error);
-      openNotification("error", "Không thể tải dữ liệu", "Kiểm tra lại kết nối hoặc API.");
+      openNotification("error", "Không thể tải dữ liệu", "Kiểm tra lại kết nối.");
     }
 
     setLoading(false);
@@ -46,9 +54,17 @@ const ManageUsers = () => {
 
     try {
       if (editingUser) {
-        await axios.put(`${API_URL}/${editingUser.maNguoiDung}`, values);
+        // console.log(values);
+        const data = {
+          hoTen: values.hoTen,
+          laNam: values.laNam,
+          soDienThoai: values.soDienThoai,
+          email: values.email,
+          maQuyen: values.maQuyen
+        }
+        // console.log("request data", data);
+        await axios.patch(`${API_URL}/${editingUser.maNguoiDung}`, data);
         openNotification("success", "Thành công", "Người dùng đã được cập nhật.");
-
       } else {
         const newUser = { ...values, active: true }; // Báo cáo mặc định active nếu tạo người mới
         await axios.post(API_URL, newUser);
@@ -66,9 +82,11 @@ const ManageUsers = () => {
   };
 
   const handleEdit = (user) => {
+    // console.log("user: ", user);
     const formattedUser = {
       ...user,
-      gender: user.laNam ? "Nam" : "Nữ", // Đổi thành giá trị "Nam"/"Nữ"
+      laNam: user.laNam,
+      maQuyen: user.maQuyen.maQuyen
     };
     setEditingUser(user);
     setIsModalOpen(true);
@@ -157,16 +175,13 @@ const ManageUsers = () => {
         onOk={() => form.submit()}
       >
         <Form form={form} layout="vertical" className={styles["modal-form"]} onFinish={handleAddOrUpdateUser}>
-          <Form.Item name="maNguoiDung" label="Mã người dùng" rules={[{ required: true, message: "Vui lòng nhập mã người dùng!" }]}>
-            <Input disabled={!!editingUser} />
-          </Form.Item>
           <Form.Item name="hoTen" label="Họ và Tên" rules={[{ required: true, message: "Vui lòng nhập họ và tên!" }]}>
             <Input />
           </Form.Item>
           <Form.Item name="laNam" label="Giới tính" rules={[{ required: true }]}>
             <Select>
-              <Select.Option value="true">Nam</Select.Option>
-              <Select.Option value="false">Nữ</Select.Option>
+              <Select.Option value={true}>Nam</Select.Option>
+              <Select.Option value={false}>Nữ</Select.Option>
             </Select>
           </Form.Item>
           <Form.Item name="soDienThoai" label="Số điện thoại" rules={[{ required: true, message: "Vui lòng nhập số điện thoại!" }]}>
@@ -179,19 +194,22 @@ const ManageUsers = () => {
           >
             <Input disabled={!!editingUser} />
           </Form.Item>
-          {!editingUser && (
-            <Form.Item name="matKhau" label="Mật khẩu" rules={[{ required: true, message: "Vui lòng nhập mật khẩu!" }]}>
-              <Input.Password />
-            </Form.Item>
-          )}
+          {
+            !editingUser && (
+              <Form.Item name="matKhau" label="Mật khẩu" rules={[{ required: true, message: "Vui lòng nhập mật khẩu!" }]}>
+                <Input.Password />
+              </Form.Item>
+            )
+          }
           <Form.Item name="maQuyen" label="Quyền" rules={[{ required: true }]}>
             <Select>
-              <Select.Option value="Q2">Quản trị viên</Select.Option>
               <Select.Option value="Q1">Người dùng</Select.Option>
+              <Select.Option value="Q2">Quản trị viên</Select.Option>
             </Select>
           </Form.Item>
         </Form>
       </Modal>
+      <ToastContainer position="top-right" autoClose={3000} />
     </div>
   );
 };

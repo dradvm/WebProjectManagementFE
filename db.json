@@ -1,20 +1,6 @@
 {
   "items": [
     {
-      "id": "1",
-      "name": "Phòng ngừa bệnh dại ở người",
-      "url": "https://docs.google.com/forms/d/1a1-HeD_8nw8pGn-2J5ktUhqLhbAeCVv70brD_ISc5hk/edit",
-      "date": "2025-02-10",
-      "projectId": "1"
-    },
-    {
-      "id": "2",
-      "name": "Phòng ngừa bệnh dại ở heo",
-      "url": "https://docs.google.com/forms/d/e/1FAIpQLSd89yuUAdHq3yLUIGnz5a4ocHSpl22F2p6_1j3NYIMsOLr4Dw/viewform?usp=header",
-      "date": "2025-02-10",
-      "projectId": "2"
-    },
-    {
       "id": "3",
       "name": "Phòng ngừa bệnh dại ở gà ",
       "url": "https://docs.google.com/forms/d/e/1FAIpQLSd89yuUAdHq3yLUIGnz5a4ocHSpl22F2p6_1j3NYIMsOLr4Dw/viewform?usp=header",
@@ -22,34 +8,11 @@
       "projectId": "3"
     },
     {
-      "id": "4",
-      "name": "Phòng ngừa bệnh dại ở chó ",
-      "url": "https://docs.google.com/forms/d/e/1FAIpQLSd89yuUAdHq3yLUIGnz5a4ocHSpl22F2p6_1j3NYIMsOLr4Dw/viewform?usp=header",
-      "date": "2025-02-10",
-      "projectId": "1"
-    },
-    {
       "id": "5",
       "name": "Phòng ngừa bệnh dại ở mèo ",
       "url": "https://docs.google.com/forms/d/e/1FAIpQLSd89yuUAdHq3yLUIGnz5a4ocHSpl22F2p6_1j3NYIMsOLr4Dw/viewform?usp=header",
       "date": "2025-02-10",
       "projectId": "2"
-    },
-    {
-      "id": "6",
-      "name": "Phòng ngừa bệnh dại ở ngựa ",
-      "url": "https://docs.google.com/forms/d/e/1FAIpQLSd89yuUAdHq3yLUIGnz5a4ocHSpl22F2p6_1j3NYIMsOLr4Dw/viewform?usp=header",
-      "date": "2025-02-10",
-      "projectId": "3"
-    },
-    {
-      "id": "babc",
-      "name": "Tôi bị điển rồi",
-      "url": "https://docs.google.com/forms/d/1Zz3kzyFTftIYlblJ5qtF3Jmy0JTXfMnqNFkDJ8HMBC0/edit",
-      "createdAt": "2025-03-15",
-      "openAt": "",
-      "closeAt": "",
-      "projectId": "1"
     }
   ],
   "users": [
@@ -119,6 +82,16 @@
       "role": "Admin",
       "password": "meo12345",
       "status": "Hoạt động"
+    },
+    {
+      "id": "B2163451",
+      "fullName": "Lâm Chí Vĩnh",
+      "gender": "Nam",
+      "phone": "0954632541",
+      "email": "lcvinh@gmail.com",
+      "password": "lcvinh",
+      "role": "User",
+      "status": "Hoạt động"
     }
   ],
   "trash": [
@@ -185,9 +158,9 @@
   ],
   "projects": [
     {
-      "id": "1",
-      "name": "Dự án A",
-      "description": "Mô tả ngắn về dự án A",
+      "id": "DA001",
+      "name": "Dự án X",
+      "description": "Mô tả ngắn về dự án XX",
       "startDate": "2024-01-10",
       "endDate": "2024-06-15",
 <<<<<<< HEAD
@@ -215,8 +188,8 @@
 >>>>>>> 1ab7ca6dae8d9ce9ee80248f291aeaeaa7bd3cad
     },
     {
-      "id": "2",
-      "name": "Dự án B",
+      "id": "DA002",
+      "name": "Dự án Y",
       "description": "Mô tả ngắn về dự án B",
       "startDate": "2023-12-05",
       "endDate": "2024-05-20",

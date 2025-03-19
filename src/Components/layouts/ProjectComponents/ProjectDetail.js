@@ -3,7 +3,6 @@ import styles from "./ProjectDetail.module.scss";
 import axios from "axios";
 import { useParams, useNavigate } from "react-router-dom";
 import InputField from "../LoginComponents/InputField.js";
-import CreateForm from "../../CreateForm/createForm.js";
 import FormList from "../FormList/formList.js";
 import duAnService from "../../../services/duAnService.js";
 import AddParticipants from "./AddParticipants.js";
@@ -452,7 +451,7 @@ function ProjectDetail() {
           Phiếu khảo sát
         </div>
         <div className={styles.sectionContent}>
-          <FormList projectId={id} />
+          <FormList maDuAn={id} />
         </div>
       </div>
 

@@ -10,7 +10,7 @@ function ProjectList() {
   const [projects, setProjects] = useState();
   const [showAddModal, setShowAddModal] = useState(false);
   const navigate = useNavigate();
-
+  console.log("style", styles.projectCard);
   const onViewDetail = (project) => {
     navigate(`/project/${project.duan.maDuAn}`);
   };
