@@ -26,12 +26,11 @@ const EditForm = ({ visible, onCancel, form, onSuccess }) => {
             setLoading(true);
 
             const updatedForm = {
-                ...form,
                 tenPhieuKhaoSat: values.tenPhieuKhaoSat,
                 ngayGioMo: values.ngayGioMo?.toISOString(),
                 ngayGioDong: values.ngayGioDong?.toISOString(),
             };
-
+            console.log("updated data: ", updatedForm);
             const response = await phieuKhaoSatService.update(form.maPhieuKhaoSat, updatedForm);
             if (response) {
                 message.success('Cập nhật phiếu khảo sát thành công!');

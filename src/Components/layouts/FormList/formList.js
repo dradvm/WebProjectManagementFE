@@ -1,15 +1,36 @@
 import React, { useState, useEffect } from 'react';
 import { List, Input, Button, message, Card, Row, Col } from 'antd';
-import { SearchOutlined, PlusOutlined } from '@ant-design/icons';
+import { PlusOutlined } from '@ant-design/icons';
 import FormItem from '../ContentComponent/FormItem/formItem';
 import CreateForm from '../../CreateForm/createForm';
 import phieuKhaoSatService from '../../../services/phieuKhaoSatService';
+import dayjs from 'dayjs';
 
-const FormList = ({ maDuAn }) => {
+const FormList = ({ maDuAn, isOwner }) => {
   const [forms, setForms] = useState([]);
-  const [searchText, setSearchText] = useState('');
   const [loading, setLoading] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const getFormStatus = (form) => {
+    const now = dayjs();
+    const startDate = dayjs(form.ngayGioMo);
+    const endDate = dayjs(form.ngayGioDong);
+
+    if (now.isBefore(startDate)) {
+      return 'upcoming';
+    } else if (now.isAfter(endDate)) {
+      return 'closed';
+    } else {
+      return 'active';
+    }
+  };
+
+  const processFormsData = (data) => {
+    return data.map(form => ({
+      ...form,
+      status: getFormStatus(form)
+    }));
+  };
 
   useEffect(() => {
     if (maDuAn) {
@@ -21,7 +42,8 @@ const FormList = ({ maDuAn }) => {
     try {
       setLoading(true);
       const data = await phieuKhaoSatService.getByMaDuAn(maDuAn);
-      setForms(data);
+      const processedData = processFormsData(data);
+      setForms(processedData);
     } catch (error) {
       message.error('Không thể tải danh sách phiếu khảo sát');
     } finally {
@@ -29,30 +51,14 @@ const FormList = ({ maDuAn }) => {
     }
   };
 
-  const handleSearch = async () => {
-    if (!searchText.trim()) {
-      loadForms();
-      return;
-    }
-
-    try {
-      setLoading(true);
-      const data = await phieuKhaoSatService.search(searchText);
-      setForms(data);
-    } catch (error) {
-      message.error('Lỗi khi tìm kiếm phiếu khảo sát');
-    } finally {
-      setLoading(false);
-    }
-  };
   const handleUpdate = (updatedForm) => {
-    // Cập nhật state với form đã được cập nhật
     setForms(prevForms =>
       prevForms.map(form =>
         form.maPhieuKhaoSat === updatedForm.maPhieuKhaoSat ? updatedForm : form
       )
     );
   };
+
   const handleDelete = async (maPhieuKhaoSat) => {
     try {
       await phieuKhaoSatService.delete(maPhieuKhaoSat);
@@ -62,7 +68,6 @@ const FormList = ({ maDuAn }) => {
       message.error('Lỗi khi xóa phiếu khảo sát');
     }
   };
-
 
   const showModal = () => {
     setIsModalOpen(true);
@@ -80,31 +85,24 @@ const FormList = ({ maDuAn }) => {
   return (
     <Card>
       <Row gutter={[16, 16]}>
-        <Col span={24}>
-          <div style={{
-            display: 'flex',
-            justifyContent: 'space-between',
-            alignItems: 'center',
-            marginBottom: 16
-          }}>
-            <Input.Search
-              placeholder="Tìm kiếm phiếu khảo sát..."
-              prefix={<SearchOutlined />}
-              value={searchText}
-              onChange={(e) => setSearchText(e.target.value)}
-              onSearch={handleSearch}
-              style={{ width: 300 }}
-              allowClear
-            />
-            <Button
-              type="primary"
-              icon={<PlusOutlined />}
-              onClick={showModal}
-            >
-              Tạo phiếu khảo sát
-            </Button>
-          </div>
-        </Col>
+        {isOwner && (
+          <Col span={24}>
+            <div style={{
+              display: 'flex',
+              justifyContent: 'space-between',
+              alignItems: 'center',
+              marginBottom: 16
+            }}>
+              <Button
+                type="primary"
+                icon={<PlusOutlined />}
+                onClick={showModal}
+              >
+                Tạo phiếu khảo sát
+              </Button>
+            </div>
+          </Col>
+        )}
         <Col span={24}>
           <List
             loading={loading}
@@ -119,6 +117,8 @@ const FormList = ({ maDuAn }) => {
                 onDelete={handleDelete}
                 onRefresh={loadForms}
                 onUpdate={handleUpdate}
+                isOwner={isOwner}
+                hideAnswerButton={form.status === 'closed'}
               />
             )}
           />

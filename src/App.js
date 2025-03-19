@@ -21,8 +21,8 @@ export const itemsContext = createContext();
 const cx = classNames.bind(styles);
 
 function App() {
-  const FORMS_API = "http://localhost:5000/items";
-  const PROJECTS_API = "http://localhost:5000/projects";
+  const FORMS_API = "/phieu-khao-sat";
+  const PROJECTS_API = "/duans";
   const [forms, setForms] = useState([]);
   const [trash, setTrash] = useState([]);
   const [deletedForms, setDeletedForms] = useState([]);

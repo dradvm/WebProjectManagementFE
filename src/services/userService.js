@@ -26,6 +26,7 @@ import createAxios from "../utils/axios";
 const axios = createAxios("/users")
 
 const userService = {
+  getAllNguoiDung: () => axios.get(""),
   getListNguoiDungNotInDuAn: (id) => axios.get(`/listNguoiDungNotInDuAn/${id}`),
   getListNguoiDungInDuAn: (id) => axios.get(`/listNguoiDungInDuAn/${id}`)
 }

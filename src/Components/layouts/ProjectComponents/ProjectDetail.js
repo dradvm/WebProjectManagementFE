@@ -8,6 +8,7 @@ import duAnService from "../../../services/duAnService.js";
 import AddParticipants from "./AddParticipants.js";
 import tapTinService from "../../../services/tapTinService.js";
 import userService from "../../../services/userService.js";
+import CreateForm from "../../CreateForm/createForm.js";
 
 function ProjectDetail() {
   const { id } = useParams();
@@ -451,7 +452,7 @@ function ProjectDetail() {
           Phiếu khảo sát
         </div>
         <div className={styles.sectionContent}>
-          <FormList maDuAn={id} />
+          <FormList maDuAn={id} isOwner={isDuAnOwner} />
         </div>
       </div>
 

@@ -21,23 +21,23 @@ const phieuKhaoSatService = {
     getAll: async () => {
         try {
             const response = await axios.get(PHIEU_KHAO_SAT_API_URL);
-            return response.data;
+            return response.data || [];
         } catch (error) {
             console.error('Lỗi khi lấy tất cả phiếu khảo sát:', error);
-            throw error;
+            return [];
         }
     },
 
     // Tìm kiếm phiếu khảo sát
-    search: async (keyword) => {
+    search: async (title) => {
         try {
             const response = await axios.get(`${PHIEU_KHAO_SAT_API_URL}/search`, {
-                params: { keyword }
+                params: { title }
             });
-            return response.data;
+            return response.data || [];
         } catch (error) {
             console.error('Lỗi khi tìm kiếm phiếu khảo sát:', error);
-            throw error;
+            return [];
         }
     },
 
