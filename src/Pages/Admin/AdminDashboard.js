@@ -3,7 +3,7 @@ import { Table, Button, Modal, Form, Input, Select } from "antd";
 import styles from "./ManageUsers.module.scss";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-
+import authService from "../../services/authService"
 
 import createAxios from "../../utils/axios";
 const axios = await createAxios();
@@ -67,7 +67,8 @@ const ManageUsers = () => {
         openNotification("success", "Thành công", "Người dùng đã được cập nhật.");
       } else {
         const newUser = { ...values, active: true }; // Báo cáo mặc định active nếu tạo người mới
-        await axios.post(API_URL, newUser);
+        if (newUser.maNguoiDung === "Q1") authService.registerNguoiDung(newUser);
+        else authService.registerQuanTriVien(newUser);
         openNotification("success", "Thành công", "Người dùng mới đã được thêm.");
       }
       setIsModalOpen(false);
@@ -96,6 +97,7 @@ const ManageUsers = () => {
   const handleToggleStatus = async (maNguoiDung, currentStatus) => {
     const newStatus = !currentStatus;  // Đảo ngược trạng thái true -> false và ngược lại
     try {
+      console.log("api: ", `${API_URL}/${maNguoiDung}/active/${newStatus}`);
       await axios.patch(`${API_URL}/${maNguoiDung}/active/${newStatus}`);
       loadUsers();
       openNotification("success", "Thành công", "Cập nhật trạng thái thành công.");
